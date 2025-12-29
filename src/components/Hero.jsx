@@ -3,8 +3,9 @@ import { ArrowRight } from "lucide-react";
 import slide1 from "../assets/hero-slides/slide1.jpg";
 import slide2 from "../assets/hero-slides/slide2.jpg";
 import slide3 from "../assets/hero-slides/slide3.jpeg";
+import slide4 from "../assets/hero-slides/slide4.jpg";
 
-const slides = [slide1, slide2, slide3];
+const slides = [slide1, slide2, slide3, slide4];
 
 const Hero = () => {
   const [currentSlide, setCurrentSlide] = useState(0);

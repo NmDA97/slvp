@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Map, Heart, CheckCircle, ArrowRight } from "lucide-react";
 import slide1 from "../assets/hero-slides/slide1.jpg";
 import slide2 from "../assets/hero-slides/slide2.jpg";
@@ -8,135 +9,167 @@ import volunteerImg from "../assets/offer-images/volunteer.jpg";
 import comboImg from "../assets/offer-images/combo.jpg";
 
 const About = () => {
+  const [isExpanded, setIsExpanded] = useState(false);
+
   return (
-    <section id="about" className="section-about py-5">
-      <div className="container">
-        <div className="welcome-grid">
-          <div className="welcome-content">
-            <div className="section-title text-start mb-4">
-              <h2>Welcome to SLVP</h2>
-              <h4 className="welcome-subtitle">
-                Experience the best of Sri Lanka, Find the best of you!
-              </h4>
-            </div>
-            <p className="welcome-text">
-              We're a Sri Lanka-based travel company offering tourism
-              opportunities for all types of travelers, whether you're a luxury
-              or budget traveler. We specialize in providing authentic and
-              all-inclusive Sri Lankan experiences that will give your life new
-              meaning.
-            </p>
-            <p className="welcome-text">
-              Our tour plans are tailored to suit your aspirations, from
-              adventurous backpacking trips to relaxing family vacations.
-              Explore the lush green forests, pristine beaches, and
-              awe-inspiring mountains of Sri Lanka while immersing yourself in
-              the country's rich cultural heritage. At SLVP, we believe in
-              responsible tourism and offer opportunities for guided tours and
-              volunteering to make a positive impact in local communities.
-            </p>
-            <p className="welcome-text">
-              Spend your holiday meaningfully and support those in need while
-              discovering the true beauty and hospitality of Sri Lanka. Our team
-              of expert travel consultants is here to help you plan the best Sri
-              Lankan tour package for your dream holiday. Book with SLVP and
-              create memories that will last a lifetime.
-            </p>
-          </div>
-          <div className="welcome-collage">
-            <div className="collage-column col-1">
-              <div className="collage-item item-1">
-                <img src={slide1} alt="Sri Lanka Nature" />
+    <>
+      <section id="about" className="section-about pt-5 pb-0">
+        <div className="container">
+          <div className="welcome-grid">
+            <div className="welcome-content">
+              <div className="section-title text-start mb-4">
+                <h2>Welcome to SLVP</h2>
+                <h4 className="welcome-subtitle">
+                  Experience the best of Sri Lanka, Find the best of you!
+                </h4>
               </div>
-            </div>
-            <div className="collage-column col-2">
-              <div className="collage-item item-2">
-                <img src={slide2} alt="Sri Lanka Culture" />
-              </div>
-              <div className="collage-item item-3">
-                <img src={slide3} alt="Sri Lanka Adventure" />
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* What We Offer Section */}
-        <div className="offer-header text-center mb-5">
-          <img src={logoSmall} alt="SLVP Logo" className="offer-logo mx-auto" />
-          <h5 className="offer-top-title">WHAT WE OFFER</h5>
-          <h2 className="offer-main-title">TRAVEL, VOLUNTEER, AND COMBINED</h2>
-          <p className="offer-subtitle">
-            "Experience the best of Sri Lanka by joining our travel and
-            volunteer programs. Work with children, protect sea turtles, care
-            for elephants and more while exploring the island's natural beauty
-            and culture."
-          </p>
-        </div>
-
-        <div className="bento-grid">
-          {/* Main Tall Card - Guided Tours */}
-          <div className="bento-card bento-card-main">
-            <img src={tourGuideImg} alt="Guided Tours" className="bento-bg" />
-            <div className="bento-overlay"></div>
-            <div className="bento-content">
-              <h3>Guided Tours</h3>
-              <p>
-                Join our guided tours to explore the island's diverse
-                landscapes, ancient sites, and cultural heritage. Immerse
-                yourself in Sri Lankan culture.
+              <p className="welcome-text">
+                We're a Sri Lanka-based travel company offering tourism
+                opportunities for all types of travelers, whether you're a
+                luxury or budget traveler. We specialize in providing authentic
+                and all-inclusive Sri Lankan experiences that will give your
+                life new meaning.
               </p>
-              <a href="#tours" className="bento-link">
-                Learn More <ArrowRight size={16} />
-              </a>
+
+              <div
+                className={`welcome-collapsible ${
+                  isExpanded ? "expanded" : ""
+                }`}
+              >
+                <p className="welcome-text">
+                  Our tour plans are tailored to suit your aspirations, from
+                  adventurous backpacking trips to relaxing family vacations.
+                  Explore the lush green forests, pristine beaches, and
+                  awe-inspiring mountains of Sri Lanka while immersing yourself
+                  in the country's rich cultural heritage. At SLVP, we believe
+                  in responsible tourism and offer opportunities for guided
+                  tours and volunteering to make a positive impact in local
+                  communities.
+                </p>
+                <p className="welcome-text">
+                  Spend your holiday meaningfully and support those in need
+                  while discovering the true beauty and hospitality of Sri
+                  Lanka. Our team of expert travel consultants is here to help
+                  you plan the best Sri Lankan tour package for your dream
+                  holiday. Book with SLVP and create memories that will last a
+                  lifetime.
+                </p>
+              </div>
+
+              {!isExpanded && (
+                <button
+                  className="read-more-btn"
+                  onClick={() => setIsExpanded(true)}
+                >
+                  Read More...
+                </button>
+              )}
+            </div>
+            <div className="welcome-collage">
+              <div className="collage-column col-1">
+                <div className="collage-item item-1">
+                  <img src={slide1} alt="Sri Lanka Nature" />
+                </div>
+              </div>
+              <div className="collage-column col-2">
+                <div className="collage-item item-2">
+                  <img src={slide2} alt="Sri Lanka Culture" />
+                </div>
+                <div className="collage-item item-3">
+                  <img src={slide3} alt="Sri Lanka Adventure" />
+                </div>
+              </div>
             </div>
           </div>
+        </div>
+      </section>
 
-          <div className="bento-col-side">
-            {/* Side Card - Volunteer */}
-            <div className="bento-card">
-              <img
-                src={volunteerImg}
-                alt="Volunteer Programs"
-                className="bento-bg"
-              />
+      <section id="offer" className="section-offer pb-5 pt-0">
+        <div className="container">
+          {/* What We Offer Section */}
+          <div className="offer-header text-center mb-5">
+            <img
+              src={logoSmall}
+              alt="SLVP Logo"
+              className="offer-logo mx-auto"
+            />
+            <h5 className="offer-top-title">WHAT WE OFFER</h5>
+            <h2 className="offer-main-title">
+              TRAVEL, VOLUNTEER, AND COMBINED
+            </h2>
+            <p className="offer-subtitle">
+              "Experience the best of Sri Lanka by joining our travel and
+              volunteer programs. Work with children, protect sea turtles, care
+              for elephants and more while exploring the island's natural beauty
+              and culture."
+            </p>
+          </div>
+
+          <div className="bento-grid">
+            {/* Main Tall Card - Guided Tours */}
+            <div className="bento-card bento-card-main">
+              <img src={tourGuideImg} alt="Guided Tours" className="bento-bg" />
               <div className="bento-overlay"></div>
               <div className="bento-content">
-                <h3>Volunteer Programs</h3>
+                <h3>Guided Tours</h3>
                 <p>
-                  Give back to local communities and make a difference by
-                  volunteering with SLVP.
+                  Join our guided tours to explore the island's diverse
+                  landscapes, ancient sites, and cultural heritage. Immerse
+                  yourself in Sri Lankan culture.
                 </p>
-                <a href="#volunteer" className="bento-link">
+                <a href="#tours" className="bento-link">
                   Learn More <ArrowRight size={16} />
                 </a>
               </div>
             </div>
 
-            {/* Side Card - Combo */}
-            <div className="bento-card">
-              <img src={comboImg} alt="Combo Programs" className="bento-bg" />
-              <div className="bento-overlay"></div>
-              <div className="bento-content">
-                <h3>Combo Programs</h3>
-                <p>
-                  Combine travel & volunteering. Create unforgettable memories
-                  while making a positive impact.
-                </p>
-                <a href="#combo" className="bento-link">
-                  Learn More <ArrowRight size={16} />
-                </a>
+            <div className="bento-col-side">
+              {/* Side Card - Volunteer */}
+              <div id="volunteer" className="bento-card">
+                <img
+                  src={volunteerImg}
+                  alt="Volunteer Programs"
+                  className="bento-bg"
+                />
+                <div className="bento-overlay"></div>
+                <div className="bento-content">
+                  <h3>Volunteer Programs</h3>
+                  <p>
+                    Give back to local communities and make a difference by
+                    volunteering with SLVP.
+                  </p>
+                  <a href="#volunteer" className="bento-link">
+                    Learn More <ArrowRight size={16} />
+                  </a>
+                </div>
+              </div>
+
+              {/* Side Card - Combo */}
+              <div className="bento-card">
+                <img src={comboImg} alt="Combo Programs" className="bento-bg" />
+                <div className="bento-overlay"></div>
+                <div className="bento-content">
+                  <h3>Combo Programs</h3>
+                  <p>
+                    Combine travel & volunteering. Create unforgettable memories
+                    while making a positive impact.
+                  </p>
+                  <a href="#combo" className="bento-link">
+                    Learn More <ArrowRight size={16} />
+                  </a>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 
-        <div className="text-center mt-5">
-          <a href="#tours" className="btn btn-primary">
-            Learn More About Us
-          </a>
+          <div className="text-center mt-5">
+            <a href="#tours" className="btn btn-primary">
+              Learn More About Us
+            </a>
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </>
   );
 };
 

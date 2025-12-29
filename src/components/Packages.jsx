@@ -43,6 +43,7 @@ const Packages = () => {
         </div>
 
         <div className="packages-grid">
+          {/* 
           {packages.map((pkg) => (
             <div key={pkg.id} className="package-card">
               <div className="package-image">
@@ -66,6 +67,7 @@ const Packages = () => {
               </div>
             </div>
           ))}
+           */}
         </div>
       </div>
     </section>
