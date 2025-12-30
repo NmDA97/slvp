@@ -286,14 +286,19 @@ img {
 /* Hero Section */
 .hero {
   position: relative;
+  height: 200vh; /* Increased height to allow scrolling stickiness */
+  width: 100%;
+}
+
+.hero-sticky-wrapper {
+  position: sticky;
+  top: 0;
   height: 100vh;
-  min-height: 600px;
+  width: 100%;
+  overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--white);
-  padding-top: 80px; /* Offset for fixed navbar */
-  overflow: hidden;
 }
 
 .hero-bg {
@@ -305,15 +310,8 @@ img {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  transition: opacity 1.5s ease-in-out, transform 8s ease; /* Smooth fade + slow zoom */
-  opacity: 0;
   z-index: 0;
-  transform: scale(1.05);
-}
-
-.hero-bg.active {
-  opacity: 1;
-  transform: scale(1);
+  will-change: transform; /* Optimize for scale animation */
 }
 
 .hero-overlay {

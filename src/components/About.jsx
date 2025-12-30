@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { Map, Heart, CheckCircle, ArrowRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
+import { motion } from "framer-motion";
 import slide1 from "../assets/hero-slides/slide1.jpg";
 import slide2 from "../assets/hero-slides/slide2.jpg";
 import slide3 from "../assets/hero-slides/slide3.jpeg";
@@ -7,6 +8,34 @@ import logoSmall from "../assets/logosmall.png";
 import tourGuideImg from "../assets/offer-images/guided-tour.jpg";
 import volunteerImg from "../assets/offer-images/volunteer.jpg";
 import comboImg from "../assets/offer-images/combo.jpg";
+
+// Animation Variants
+const slideInLeft = {
+  hidden: { opacity: 0, x: -100 },
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: { duration: 0.8, ease: "easeOut" },
+  },
+};
+
+const slideInRight = {
+  hidden: { opacity: 0, x: 100 },
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: { duration: 0.8, ease: "easeOut" },
+  },
+};
+
+const slideInUp = {
+  hidden: { opacity: 0, y: 50 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.8, ease: "easeOut" },
+  },
+};
 
 const About = () => {
   const [isExpanded, setIsExpanded] = useState(false);
@@ -66,18 +95,49 @@ const About = () => {
               )}
             </div>
             <div className="welcome-collage">
+              {/* Animation for collage: Slide in from right staggered? Or kept simple */}
               <div className="collage-column col-1">
-                <div className="collage-item item-1">
+                <motion.div
+                  className="collage-item item-1"
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true, amount: 0.3 }}
+                  variants={slideInUp}
+                >
                   <img src={slide1} alt="Sri Lanka Nature" />
-                </div>
+                </motion.div>
               </div>
               <div className="collage-column col-2">
-                <div className="collage-item item-2">
+                <motion.div
+                  className="collage-item item-2"
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true, amount: 0.3 }}
+                  variants={{
+                    ...slideInUp,
+                    visible: {
+                      ...slideInUp.visible,
+                      transition: { delay: 0.2, duration: 0.8 },
+                    },
+                  }}
+                >
                   <img src={slide2} alt="Sri Lanka Culture" />
-                </div>
-                <div className="collage-item item-3">
+                </motion.div>
+                <motion.div
+                  className="collage-item item-3"
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true, amount: 0.3 }}
+                  variants={{
+                    ...slideInUp,
+                    visible: {
+                      ...slideInUp.visible,
+                      transition: { delay: 0.4, duration: 0.8 },
+                    },
+                  }}
+                >
                   <img src={slide3} alt="Sri Lanka Adventure" />
-                </div>
+                </motion.div>
               </div>
             </div>
           </div>
@@ -85,7 +145,9 @@ const About = () => {
       </section>
 
       <section id="offer" className="section-offer pb-5 pt-0">
-        <div className="container">
+        <div className="container" style={{ overflow: "hidden" }}>
+          {" "}
+          {/* Overflow hidden to prevent scrollbars during animation */}
           {/* What We Offer Section */}
           <div className="offer-header text-center mb-5">
             <img
@@ -104,10 +166,16 @@ const About = () => {
               and culture."
             </p>
           </div>
-
           <div className="bento-grid">
-            {/* Main Tall Card - Guided Tours */}
-            <div className="bento-card bento-card-main">
+            {/* Main Tall Card - Guided Tours (Coming from LEFT) */}
+            <motion.div
+              className="bento-card bento-card-main"
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.2 }}
+              variants={slideInLeft}
+              whileHover={{ scale: 1.02 }}
+            >
               <img src={tourGuideImg} alt="Guided Tours" className="bento-bg" />
               <div className="bento-overlay"></div>
               <div className="bento-content">
@@ -121,11 +189,19 @@ const About = () => {
                   Learn More <ArrowRight size={16} />
                 </a>
               </div>
-            </div>
+            </motion.div>
 
             <div className="bento-col-side">
-              {/* Side Card - Volunteer */}
-              <div id="volunteer" className="bento-card">
+              {/* Side Card - Volunteer (Coming from RIGHT) */}
+              <motion.div
+                id="volunteer"
+                className="bento-card"
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.2 }}
+                variants={slideInRight}
+                whileHover={{ scale: 1.02 }}
+              >
                 <img
                   src={volunteerImg}
                   alt="Volunteer Programs"
@@ -142,10 +218,24 @@ const About = () => {
                     Learn More <ArrowRight size={16} />
                   </a>
                 </div>
-              </div>
+              </motion.div>
 
-              {/* Side Card - Combo */}
-              <div className="bento-card">
+              {/* Side Card - Combo (Coming from RIGHT, slightly delayed) */}
+              <motion.div
+                className="bento-card"
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.2 }}
+                variants={{
+                  hidden: { opacity: 0, x: 100 },
+                  visible: {
+                    opacity: 1,
+                    x: 0,
+                    transition: { delay: 0.2, duration: 0.8, ease: "easeOut" },
+                  },
+                }}
+                whileHover={{ scale: 1.02 }}
+              >
                 <img src={comboImg} alt="Combo Programs" className="bento-bg" />
                 <div className="bento-overlay"></div>
                 <div className="bento-content">
@@ -158,10 +248,9 @@ const About = () => {
                     Learn More <ArrowRight size={16} />
                   </a>
                 </div>
-              </div>
+              </motion.div>
             </div>
           </div>
-
           <div className="text-center mt-5">
             <a href="#tours" className="btn btn-primary">
               Learn More About Us

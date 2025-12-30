@@ -1,4 +1,5 @@
 import { MapPin, ArrowRight } from "lucide-react";
+import { motion } from "framer-motion";
 
 const packages = [
   {
@@ -30,6 +31,21 @@ const packages = [
   },
 ];
 
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.2,
+    },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
+};
+
 const Packages = () => {
   return (
     <section id="tours" className="section-packages py-5 bg-light">
@@ -42,10 +58,20 @@ const Packages = () => {
           </p>
         </div>
 
-        <div className="packages-grid">
-          {/* 
-          {packages.map((pkg) => (
-            <div key={pkg.id} className="package-card">
+        <motion.div
+          className="packages-grid"
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.1 }}
+        >
+          {/* {packages.map((pkg) => (
+            <motion.div
+              key={pkg.id}
+              className="package-card"
+              variants={itemVariants}
+              whileHover={{ y: -10 }}
+            >
               <div className="package-image">
                 <img src={pkg.image} alt={pkg.title} />
                 <div className="package-overlay">
@@ -65,10 +91,9 @@ const Packages = () => {
                   View Itinerary <ArrowRight size={16} />
                 </a>
               </div>
-            </div>
-          ))}
-           */}
-        </div>
+            </motion.div>
+          ))} */}
+        </motion.div>
       </div>
     </section>
   );
