@@ -48,7 +48,7 @@ const Packages = () => {
         {/* Header */}
         {/* Header - Split Layout */}
         {/* Header - Centered Modern */}
-        <div className="section-title text-center mb-5">
+        <div className="section-title text-center mb-3">
           <img
             src={logoVac}
             alt="SLVP Logo"

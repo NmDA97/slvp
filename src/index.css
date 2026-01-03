@@ -113,7 +113,7 @@ img {
 
 .section-title {
   text-align: center;
-  margin-bottom: 3rem;
+  margin-bottom: 2rem;
 }
 
 .section-title h2 {
@@ -135,8 +135,8 @@ img {
   margin-bottom: 1rem;
 }
 .py-5 {
-  padding-top: 5rem;
-  padding-bottom: 5rem;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
 }
 
 /* Scrollbar */
@@ -383,9 +383,9 @@ img {
 .welcome-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 4rem;
+  gap: 3rem;
   align-items: center;
-  margin-bottom: 4rem;
+  margin-bottom: 3rem;
 }
 
 .welcome-content .section-title {
@@ -755,12 +755,16 @@ img {
     background-color: #f3f4f6; /* Light gray/white distinct from body bg */
 }
 
+.bg-azure {
+    background-color: #f0f7f8; /* Very light cool teal/azure */
+}
+
 /* Packages Section - Feature Row Layout */
 .packages-container {
     display: flex;
     flex-direction: column;
-    gap: 6rem;
-    padding: 2rem 0;
+    gap: 2rem;
+    padding: 0;
 }
 
 .package-row {
@@ -1200,7 +1204,7 @@ img {
 .why-us-tab-item {
   display: flex;
   align-items: center;
-  padding: 1.25rem 1.5rem;
+  padding: 1rem 1.5rem;
   cursor: pointer;
   border-radius: 12px;
   transition: all 0.3s ease;
@@ -1246,7 +1250,7 @@ img {
 .tab-title {
   font-weight: 700;
   color: var(--text-dark);
-  font-size: 0.95rem;
+  font-size: 0.85rem;
   text-transform: uppercase;
   transition: all 0.3s ease;
 }
@@ -1324,12 +1328,10 @@ img {
     padding-bottom: 1rem;
     gap: 1rem;
     -webkit-overflow-scrolling: touch; /* smooth scrolling iOS */
-    scroll-snap-type: x mandatory;
   }
   
   .why-us-tab-item {
     min-width: 260px;
-    scroll-snap-align: start;
     border: 1px solid rgba(0,0,0,0.05);
   }
   

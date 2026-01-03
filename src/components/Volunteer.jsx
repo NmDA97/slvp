@@ -42,10 +42,10 @@ const programs = [
 
 const Volunteer = () => {
   return (
-    <section id="volunteer" className="section-volunteer py-5 bg-white">
+    <section id="volunteer" className="section-volunteer py-5 bg-azure">
       <div className="container">
         {/* Header - Centered Modern */}
-        <div className="section-title text-center mb-5">
+        <div className="section-title text-center mb-3">
           <img
             src={logoVac}
             alt="SLVP Logo"

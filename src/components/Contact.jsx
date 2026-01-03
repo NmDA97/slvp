@@ -2,7 +2,7 @@ import { Send } from "lucide-react";
 
 const Contact = () => {
   return (
-    <section id="contact" className="section-contact py-5">
+    <section id="contact" className="section-contact py-5 bg-light">
       <div className="container">
         <div className="contact-wrapper">
           <div className="contact-info">
