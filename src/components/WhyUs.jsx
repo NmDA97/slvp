@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import {
   Map,
   Globe,
@@ -51,6 +51,38 @@ const whyUsData = [
 
 const WhyUs = () => {
   const [activeTab, setActiveTab] = useState(0);
+  const tabRefs = useRef([]);
+  const containerRef = useRef(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const index = Number(entry.target.dataset.index);
+            setActiveTab(index);
+          }
+        });
+      },
+      {
+        root: containerRef.current,
+        threshold: 0.6, // Trigger when 60% visible
+        rootMargin: "0px -10% 0px -10%", // Adjust trigger zone for better focus
+      }
+    );
+
+    tabRefs.current.forEach((ref) => {
+      if (ref) observer.observe(ref);
+    });
+
+    return () => {
+      if (tabRefs.current) {
+        tabRefs.current.forEach((ref) => {
+          if (ref) observer.unobserve(ref);
+        });
+      }
+    };
+  }, []);
 
   return (
     <section id="why-us" className="section-why-us py-5 bg-white">
@@ -62,14 +94,24 @@ const WhyUs = () => {
 
         <div className="why-us-tabs-container">
           {/* Left Side: Tabs List */}
-          <div className="why-us-tabs-list">
+          <div className="why-us-tabs-list" ref={containerRef}>
             {whyUsData.map((item, index) => (
               <div
                 key={index}
+                data-index={index}
+                ref={(el) => (tabRefs.current[index] = el)}
                 className={`why-us-tab-item ${
                   activeTab === index ? "active" : ""
                 }`}
-                onClick={() => setActiveTab(index)}
+                onClick={() => {
+                  setActiveTab(index);
+                  // Optional: Smooth scroll to clicked item if needed
+                  tabRefs.current[index]?.scrollIntoView({
+                    behavior: "smooth",
+                    block: "nearest",
+                    inline: "center",
+                  });
+                }}
               >
                 <span className="tab-icon">{item.icon}</span>
                 <span className="tab-title">{item.title}</span>

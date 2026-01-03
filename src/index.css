@@ -755,59 +755,158 @@ img {
     background-color: #f3f4f6; /* Light gray/white distinct from body bg */
 }
 
-.packages-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 2.5rem;
+/* Packages Section - Feature Row Layout */
+.packages-container {
+    display: flex;
+    flex-direction: column;
+    gap: 6rem;
+    padding: 2rem 0;
 }
 
-.package-card {
-    background: var(--white);
-    border-radius: 1rem;
+.package-row {
+    display: flex;
+    align-items: center; /* Center content vertically */
+    gap: 4rem;
+    /* min-height removed */
+}
+
+.package-row.reverse {
+    flex-direction: row-reverse;
+}
+
+.package-image-col {
+    flex: 1;
+    height: 350px; /* Fixed compact height */
+    position: relative;
+    /* display removed */
+}
+
+.package-img-wrapper {
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
     overflow: hidden;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-    transition: all 0.3s ease;
-}
-
-.package-card:hover {
-    transform: translateY(-8px);
+    position: relative;
     box-shadow: 0 20px 40px rgba(0,0,0,0.1);
 }
 
-.package-image {
-    position: relative;
-    height: 250px;
-    overflow: hidden;
-}
-
-.package-image img {
+.package-img-wrapper img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.5s ease;
+    transition: transform 0.8s ease;
 }
 
-.package-card:hover .package-image img {
-    transform: scale(1.1);
+.package-row:hover .package-img-wrapper img {
+    transform: scale(1.05);
 }
 
-.package-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(14, 59, 67, 0.4);
+.package-info-col {
+    flex: 1;
+    padding: 2rem;
+}
+
+.package-title {
+    font-size: 2.2rem;
+    font-weight: 800;
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+    line-height: 1.1;
+}
+
+.package-subtitle {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    background-color: rgba(244, 162, 97, 0.1);
+    color: var(--accent-dark);
+    font-weight: 600;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-radius: 50px;
+    margin-bottom: 1rem;
+}
+
+.package-desc {
+    font-size: 1rem;
+    color: var(--text-light);
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+}
+
+.package-includes-box {
+    background: transparent;
+    padding: 0;
+    border: none;
+    border-left: 3px solid var(--accent-color);
+    padding-left: 1rem;
+    margin-bottom: 2rem;
+    box-shadow: none;
+}
+
+.includes-label {
     display: flex;
     align-items: center;
-    justify-content: center;
-    opacity: 0;
-    transition: opacity 0.3s ease;
+    font-weight: 700;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
 }
 
-.package-card:hover .package-overlay {
-    opacity: 1;
+.includes-text {
+    font-size: 0.95rem;
+    color: var(--text-light);
+    line-height: 1.5;
+    margin-bottom: 0 !important; /* Override generic margin */
 }
+
+.btn-explore {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1rem 2rem;
+    background-color: var(--primary-color);
+    color: #fff;
+    border-radius: 50px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(14, 59, 67, 0.2);
+}
+
+.btn-explore:hover {
+    background-color: var(--primary-light);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(14, 59, 67, 0.3);
+    color: #fff;
+}
+
+@media (max-width: 900px) {
+    .package-row, .package-row.reverse {
+        flex-direction: column;
+        gap: 2rem;
+        min-height: auto;
+        text-align: center;
+    }
+    
+    .package-image-col {
+        width: 100%;
+        height: 300px;
+    }
+
+    .package-info-col {
+        padding: 0;
+    }
+
+    .package-title {
+        font-size: 2.2rem;
+    }
+
+    .package-includes-box {
+        text-align: left;
+    }
+}
+
 
 .btn-icon {
     width: 50px;
@@ -1248,4 +1347,19 @@ img {
     padding: 2rem;
     min-height: auto;
   }
+}
+
+/* Scroll Position Fix for Fixed Navbar */
+html {
+    scroll-padding-top: 100px; /* Global fix for anchor links */
+}
+
+#home,
+#about,
+#offer,
+#why-us,
+#tours,
+#volunteer,
+#contact {
+    scroll-margin-top: 100px;
 }

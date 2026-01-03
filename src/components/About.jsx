@@ -9,31 +9,22 @@ import tourGuideImg from "../assets/offer-images/guided-tour.jpg";
 import volunteerImg from "../assets/offer-images/volunteer.jpg";
 import comboImg from "../assets/offer-images/combo.jpg";
 
-// Animation Variants
-const slideInLeft = {
-  hidden: { opacity: 0, x: -100 },
-  visible: {
-    opacity: 1,
-    x: 0,
-    transition: { duration: 0.8, ease: "easeOut" },
+// Animation Variants - Apple Style Subtle Reveal
+const fadeInUp = {
+  hidden: {
+    opacity: 0,
+    y: 40,
+    scale: 0.95,
   },
-};
-
-const slideInRight = {
-  hidden: { opacity: 0, x: 100 },
-  visible: {
-    opacity: 1,
-    x: 0,
-    transition: { duration: 0.8, ease: "easeOut" },
-  },
-};
-
-const slideInUp = {
-  hidden: { opacity: 0, y: 50 },
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.8, ease: "easeOut" },
+    scale: 1,
+    transition: {
+      duration: 0.8,
+      ease: [0.22, 1, 0.36, 1], // Custom cubic-bezier for smooth snap
+      staggerChildren: 0.1,
+    },
   },
 };
 
@@ -102,7 +93,7 @@ const About = () => {
                   initial="hidden"
                   whileInView="visible"
                   viewport={{ once: true, amount: 0.3 }}
-                  variants={slideInUp}
+                  variants={fadeInUp}
                 >
                   <img src={slide1} alt="Sri Lanka Nature" />
                 </motion.div>
@@ -114,10 +105,13 @@ const About = () => {
                   whileInView="visible"
                   viewport={{ once: true, amount: 0.3 }}
                   variants={{
-                    ...slideInUp,
+                    ...fadeInUp,
                     visible: {
-                      ...slideInUp.visible,
-                      transition: { delay: 0.2, duration: 0.8 },
+                      ...fadeInUp.visible,
+                      transition: {
+                        ...fadeInUp.visible.transition,
+                        delay: 0.2,
+                      },
                     },
                   }}
                 >
@@ -129,10 +123,13 @@ const About = () => {
                   whileInView="visible"
                   viewport={{ once: true, amount: 0.3 }}
                   variants={{
-                    ...slideInUp,
+                    ...fadeInUp,
                     visible: {
-                      ...slideInUp.visible,
-                      transition: { delay: 0.4, duration: 0.8 },
+                      ...fadeInUp.visible,
+                      transition: {
+                        ...fadeInUp.visible.transition,
+                        delay: 0.4,
+                      },
                     },
                   }}
                 >
@@ -167,13 +164,13 @@ const About = () => {
             </p>
           </div>
           <div className="bento-grid">
-            {/* Main Tall Card - Guided Tours (Coming from LEFT) */}
+            {/* Main Tall Card - Guided Tours */}
             <motion.div
               className="bento-card bento-card-main"
               initial="hidden"
               whileInView="visible"
-              viewport={{ once: true, amount: 0.2 }}
-              variants={slideInLeft}
+              viewport={{ once: true, margin: "-50px" }}
+              variants={fadeInUp}
               whileHover={{ scale: 1.02 }}
             >
               <img src={tourGuideImg} alt="Guided Tours" className="bento-bg" />
@@ -192,14 +189,23 @@ const About = () => {
             </motion.div>
 
             <div className="bento-col-side">
-              {/* Side Card - Volunteer (Coming from RIGHT) */}
+              {/* Side Card - Volunteer */}
               <motion.div
-                id="volunteer"
+                href="#volunteer"
                 className="bento-card"
                 initial="hidden"
                 whileInView="visible"
-                viewport={{ once: true, amount: 0.2 }}
-                variants={slideInRight}
+                viewport={{ once: true, margin: "-50px" }}
+                variants={{
+                  ...fadeInUp,
+                  visible: {
+                    ...fadeInUp.visible,
+                    transition: {
+                      ...fadeInUp.visible.transition,
+                      delay: 0.2,
+                    },
+                  },
+                }}
                 whileHover={{ scale: 1.02 }}
               >
                 <img
@@ -220,18 +226,20 @@ const About = () => {
                 </div>
               </motion.div>
 
-              {/* Side Card - Combo (Coming from RIGHT, slightly delayed) */}
+              {/* Side Card - Combo */}
               <motion.div
                 className="bento-card"
                 initial="hidden"
                 whileInView="visible"
-                viewport={{ once: true, amount: 0.2 }}
+                viewport={{ once: true, margin: "-50px" }}
                 variants={{
-                  hidden: { opacity: 0, x: 100 },
+                  ...fadeInUp,
                   visible: {
-                    opacity: 1,
-                    x: 0,
-                    transition: { delay: 0.2, duration: 0.8, ease: "easeOut" },
+                    ...fadeInUp.visible,
+                    transition: {
+                      ...fadeInUp.visible.transition,
+                      delay: 0.4,
+                    },
                   },
                 }}
                 whileHover={{ scale: 1.02 }}
