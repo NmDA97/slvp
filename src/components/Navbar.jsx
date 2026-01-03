@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useLocation, useNavigate, Link } from "react-router-dom";
 import { Menu, X, Globe, Phone } from "lucide-react";
 import logo from "../assets/slvplogo3.png";
 
@@ -6,6 +7,40 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  // Handle navigation to section (from home or other pages)
+  const handleNavClick = (sectionId, e) => {
+    e.preventDefault();
+    setIsOpen(false);
+
+    if (location.pathname !== "/") {
+      navigate("/", { state: { scrollTo: sectionId } });
+    } else {
+      const element = document.getElementById(sectionId);
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+      } else if (sectionId === "home") {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
+    }
+  };
+
+  // Handle scroll to section after navigation from another page
+  useEffect(() => {
+    if (location.pathname === "/" && location.state?.scrollTo) {
+      const sectionId = location.state.scrollTo;
+      setTimeout(() => {
+        const element = document.getElementById(sectionId);
+        if (element) {
+          element.scrollIntoView({ behavior: "smooth" });
+        }
+        // Clear state
+        window.history.replaceState({}, document.title);
+      }, 100);
+    }
+  }, [location]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -38,10 +73,33 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Define nav items
+  const allNavItems = [
+    { id: "home", label: "Home" },
+    { id: "about", label: "About" },
+    { id: "offer", label: "What we offer" },
+    { id: "why-us", label: "Why SLVP?" },
+    { id: "tours", label: "Tours" },
+    { id: "volunteer", label: "Volunteer" },
+    { id: "contact", label: "Contact us" },
+  ];
+
+  // Filter items based on location
+  const navItems =
+    location.pathname === "/"
+      ? allNavItems
+      : allNavItems.filter((item) =>
+          ["home", "tours", "volunteer", "contact"].includes(item.id)
+        );
+
   return (
     <nav className={`navbar ${scrolled ? "scrolled" : ""}`}>
       <div className="container nav-container">
-        <a href="#home" className="logo">
+        <a
+          href="#home"
+          className="logo"
+          onClick={(e) => handleNavClick("home", e)}
+        >
           <img src={logo} alt="SLVP" className="logo-img" />
         </a>
 
@@ -49,55 +107,17 @@ const Navbar = () => {
           <button className="mobile-close" onClick={() => setIsOpen(false)}>
             <X size={24} />
           </button>
-          <a
-            href="#home"
-            className={activeSection === "home" ? "active" : ""}
-            onClick={() => setIsOpen(false)}
-          >
-            Home
-          </a>
-          <a
-            href="#about"
-            className={activeSection === "about" ? "active" : ""}
-            onClick={() => setIsOpen(false)}
-          >
-            About
-          </a>
-          <a
-            href="#offer"
-            className={activeSection === "offer" ? "active" : ""}
-            onClick={() => setIsOpen(false)}
-          >
-            What we offer
-          </a>
-          <a
-            href="#why-us"
-            className={activeSection === "why-us" ? "active" : ""}
-            onClick={() => setIsOpen(false)}
-          >
-            Why SLVP?
-          </a>
-          <a
-            href="#tours"
-            className={activeSection === "tours" ? "active" : ""}
-            onClick={() => setIsOpen(false)}
-          >
-            Tours
-          </a>
-          <a
-            href="#volunteer"
-            className={activeSection === "volunteer" ? "active" : ""}
-            onClick={() => setIsOpen(false)}
-          >
-            Volunteer
-          </a>
-          <a
-            href="#contact"
-            className={activeSection === "contact" ? "active" : ""}
-            onClick={() => setIsOpen(false)}
-          >
-            Contact us
-          </a>
+
+          {navItems.map((item) => (
+            <a
+              key={item.id}
+              href={`#${item.id}`}
+              className={activeSection === item.id ? "active" : ""}
+              onClick={(e) => handleNavClick(item.id, e)}
+            >
+              {item.label}
+            </a>
+          ))}
         </div>
 
         <button className="mobile-toggle" onClick={() => setIsOpen(!isOpen)}>

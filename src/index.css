@@ -450,10 +450,11 @@ img {
     display: inline-block;
     background: none;
     border: none;
-    color: var(--accent-color);
+    color: var(--primary-color);
     font-weight: 700;
-    cursor: pointer;
-    padding: 0;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border-bottom: 2px solid transparent; /* Prepare for hover effect */
     font-size: 1rem;
     margin-top: -0.5rem;
     margin-bottom: 1.5rem;
@@ -759,7 +760,7 @@ img {
   align-items: center;
   gap: 0.5rem;
   font-weight: 700;
-  color: var(--accent-color);
+  color: var(--primary-color); /* Restored Dark Green */
   text-transform: uppercase;
   font-size: 0.9rem;
   letter-spacing: 1px;
@@ -768,8 +769,16 @@ img {
 }
 
 .bento-link:hover {
-  color: var(--white);
+  color: var(--accent-color);
   gap: 0.75rem;
+}
+
+.bento-link-white {
+    color: var(--white);
+}
+
+.bento-link-white:hover {
+    color: var(--accent-color);
 }
 
 .mt-5 {
@@ -918,21 +927,23 @@ img {
 .btn-explore {
     display: inline-flex;
     align-items: center;
-    gap: 0.75rem;
-    padding: 1rem 2rem;
-    background-color: var(--primary-color);
-    color: #fff;
-    border-radius: 50px;
-    font-weight: 600;
+    gap: 0.5rem;
+    padding: 0;
+    background: none;
+    color: var(--primary-color);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 0.9rem;
+    border: none;
     transition: all 0.3s ease;
-    box-shadow: 0 4px 15px rgba(14, 59, 67, 0.2);
+    width: fit-content;
 }
 
 .btn-explore:hover {
-    background-color: var(--primary-light);
-    transform: translateY(-3px);
-    box-shadow: 0 8px 25px rgba(14, 59, 67, 0.3);
-    color: #fff;
+    color: var(--accent-color);
+    gap: 0.75rem;
+    transform: none;
 }
 
 @media (max-width: 900px) {
@@ -1162,6 +1173,11 @@ img {
 .social-links a:hover {
     background: var(--accent-color);
     transform: translateY(-3px);
+}
+
+.bento-link:hover {
+    color: var(--accent-color);
+    transform: translateX(5px);
 }
 
 .footer-col h3 {

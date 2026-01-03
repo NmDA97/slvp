@@ -1,0 +1,312 @@
+/* Coastal Getaways Page Styles */
+
+.coastal-page {
+  background-color: var(--bg-color);
+  padding-bottom: 4rem;
+}
+
+/* Hero Section */
+.coastal-hero {
+  height: 85vh;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  color: var(--white);
+  text-align: center;
+}
+
+.coastal-hero-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 120%; /* Taller for parallax */
+  object-fit: cover;
+  z-index: 1;
+  top: -10%; /* Center vertically to allow movement */
+}
+
+.coastal-hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.3) 0%,
+    rgba(0, 0, 0, 0.5) 50%,
+    rgba(0, 0, 0, 0.8) 100%
+  );
+  z-index: 2;
+}
+
+.coastal-hero-content {
+  position: relative;
+  z-index: 3;
+  padding: 1rem;
+  max-width: 900px;
+}
+
+.coastal-title {
+  font-size: 4.5rem;
+  font-weight: 800;
+  margin-bottom: 1.5rem;
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+  letter-spacing: -1px;
+  line-height: 1.1;
+}
+
+.coastal-breadcrumb {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.8rem;
+  font-size: 0.95rem;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.9);
+  padding: 0.8rem 1.5rem;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 50px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.scroll-indicator {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 3;
+  color: rgba(255, 255, 255, 0.7);
+  animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateX(-50%) translateY(0);
+  }
+  40% {
+    transform: translateX(-50%) translateY(-10px);
+  }
+  60% {
+    transform: translateX(-50%) translateY(-5px);
+  }
+}
+
+.breadcrumb-active {
+  color: var(--accent-color);
+}
+
+/* Intro Section */
+.coastal-intro {
+  padding: 5rem 1.5rem;
+  background-color: var(--white);
+  text-align: center;
+}
+
+.intro-container {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.intro-icon {
+  width: 80px;
+  height: 80px;
+  background-color: rgba(244, 162, 97, 0.15); /* Accent tint */
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 2rem;
+  color: var(--accent-color);
+}
+
+.intro-heading {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: var(--primary-color);
+  margin-bottom: 1.5rem;
+  text-transform: uppercase;
+  line-height: 1.2;
+}
+
+.intro-text {
+  font-size: 1.1rem;
+  color: var(--text-light);
+  line-height: 1.8;
+}
+
+/* Tour List */
+.coastal-list {
+  padding: 5rem 1.5rem;
+  background-color: #f9fafb; /* Light Gray */
+}
+
+.list-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+.coastal-card {
+  display: flex;
+  align-items: stretch;
+  background-color: var(--white);
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.08); /* Soft shadow */
+  transition: all 0.5s ease;
+}
+
+.coastal-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.15); /* Lift effect */
+}
+
+.coastal-card.reverse {
+  flex-direction: row-reverse;
+}
+
+.card-content {
+  flex: 1;
+  padding: 3rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: rgba(14, 59, 67, 0.03); /* Subtle primary tint */
+}
+
+.card-image-wrapper {
+  flex: 1;
+  min-height: 350px;
+  position: relative;
+  overflow: hidden;
+}
+
+.card-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.8s ease;
+}
+
+.coastal-card:hover .card-image {
+  transform: scale(1.05); /* Zoom effect */
+}
+
+.card-tag {
+  display: inline-block;
+  background-color: var(--accent-color);
+  color: var(--white);
+  padding: 0.5rem 1rem;
+  border-radius: 50px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 2rem;
+  box-shadow: 0 4px 10px rgba(244, 162, 97, 0.4);
+}
+
+.card-title {
+  font-size: 2rem;
+  color: var(--primary-color);
+  font-weight: 800;
+  margin-bottom: 0.5rem;
+  line-height: 1.2;
+}
+
+.card-subtitle-row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.card-line {
+  width: 40px;
+  height: 2px;
+  background-color: var(--accent-color);
+}
+
+.card-subtitle {
+  color: var(--accent-dark);
+  font-weight: 700;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.card-desc {
+  color: var(--text-light);
+  margin-bottom: 2rem;
+  font-size: 1rem;
+}
+
+.btn-card {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: var(--primary-color);
+  font-weight: 700;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  transition: all 0.3s ease;
+}
+
+.btn-card:hover {
+  color: var(--accent-color);
+  transform: translateX(5px);
+}
+
+.icon-circle {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: var(--white);
+  color: var(--primary-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  transition: all 0.3s ease;
+}
+
+.btn-card:hover .icon-circle {
+  background-color: var(--accent-color);
+  color: var(--white);
+}
+
+@media (max-width: 768px) {
+  .coastal-card,
+  .coastal-card.reverse {
+    flex-direction: column;
+  }
+  
+  .card-image-wrapper {
+    min-height: 250px;
+    height: 250px;
+  }
+  
+  .card-content {
+    padding: 2rem;
+  }
+  
+  .coastal-title {
+    font-size: 2.5rem;
+  }
+  
+  .intro-heading {
+    font-size: 1.8rem;
+  }
+  
+
+}

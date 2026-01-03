@@ -90,9 +90,9 @@ const About = () => {
               <div className="collage-column col-1">
                 <motion.div
                   className="collage-item item-1"
-                  initial="hidden"
+                  initial="visible"
                   whileInView="visible"
-                  viewport={{ once: true, amount: 0.3 }}
+                  viewport={{ once: true, amount: 0.1 }}
                   variants={fadeInUp}
                 >
                   <img src={slide1} alt="Sri Lanka Nature" />
@@ -101,9 +101,9 @@ const About = () => {
               <div className="collage-column col-2">
                 <motion.div
                   className="collage-item item-2"
-                  initial="hidden"
+                  initial="visible"
                   whileInView="visible"
-                  viewport={{ once: true, amount: 0.3 }}
+                  viewport={{ once: true, amount: 0.1 }}
                   variants={{
                     ...fadeInUp,
                     visible: {
@@ -119,9 +119,9 @@ const About = () => {
                 </motion.div>
                 <motion.div
                   className="collage-item item-3"
-                  initial="hidden"
+                  initial="visible"
                   whileInView="visible"
-                  viewport={{ once: true, amount: 0.3 }}
+                  viewport={{ once: true, amount: 0.1 }}
                   variants={{
                     ...fadeInUp,
                     visible: {
@@ -167,9 +167,9 @@ const About = () => {
             {/* Main Tall Card - Guided Tours */}
             <motion.div
               className="bento-card bento-card-main"
-              initial="hidden"
+              initial="visible"
               whileInView="visible"
-              viewport={{ once: true, margin: "-50px" }}
+              viewport={{ once: true, amount: 0.1 }}
               variants={fadeInUp}
               whileHover={{ scale: 1.02 }}
             >
@@ -182,7 +182,7 @@ const About = () => {
                   landscapes, ancient sites, and cultural heritage. Immerse
                   yourself in Sri Lankan culture.
                 </p>
-                <a href="#tours" className="bento-link">
+                <a href="#tours" className="bento-link bento-link-white">
                   Learn More <ArrowRight size={16} />
                 </a>
               </div>
@@ -193,9 +193,9 @@ const About = () => {
               <motion.div
                 href="#volunteer"
                 className="bento-card"
-                initial="hidden"
+                initial="visible"
                 whileInView="visible"
-                viewport={{ once: true, margin: "-50px" }}
+                viewport={{ once: true, amount: 0.1 }}
                 variants={{
                   ...fadeInUp,
                   visible: {
@@ -220,7 +220,7 @@ const About = () => {
                     Give back to local communities and make a difference by
                     volunteering with SLVP.
                   </p>
-                  <a href="#volunteer" className="bento-link">
+                  <a href="#volunteer" className="bento-link bento-link-white">
                     Learn More <ArrowRight size={16} />
                   </a>
                 </div>
@@ -229,9 +229,9 @@ const About = () => {
               {/* Side Card - Combo */}
               <motion.div
                 className="bento-card"
-                initial="hidden"
+                initial="visible"
                 whileInView="visible"
-                viewport={{ once: true, margin: "-50px" }}
+                viewport={{ once: true, amount: 0.1 }}
                 variants={{
                   ...fadeInUp,
                   visible: {
@@ -252,7 +252,7 @@ const About = () => {
                     Combine travel & volunteering. Create unforgettable memories
                     while making a positive impact.
                   </p>
-                  <a href="#combo" className="bento-link">
+                  <a href="#combo" className="bento-link bento-link-white">
                     Learn More <ArrowRight size={16} />
                   </a>
                 </div>

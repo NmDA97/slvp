@@ -1,4 +1,5 @@
 import { ArrowRight, MapPin } from "lucide-react";
+import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import logoVac from "../assets/logosmall_vac.png";
 import coastalImg from "../assets/packages/coastal.jpg";
@@ -9,24 +10,24 @@ const packages = [
   {
     id: 1,
     title: "Coastal Getaways",
-    subtitle: "5 Tours • Beach Holiday • All Inclusive",
+    subtitle: "4 Tours • Beach Holiday • All Inclusive",
     image: coastalImg,
     description:
       "Immerse yourself in the culture, history, and traditions of Sri Lanka while experiencing the unparalleled beauty of its beaches. Explore attractions, relax, and create cherished memories on the country's finest shores.",
     includes:
       "Negombo, Chillaw, Trincomalee, Passikuddah, Arugam Bay, Tangalle, Unawatuna, Mirissa, Beruwala",
-    link: "#coastal",
+    link: "/coastal-getaways",
   },
   {
     id: 2,
     title: "Wildlife & Nature Paradise",
-    subtitle: "6 Tours • National Parks • All Inclusive",
+    subtitle: "5 Tours • National Parks • All Inclusive",
     image: wildlifeImg,
     description:
       "Join us on an adventure through lush rainforests and misty mountains. Spot majestic elephants and leopards, marvel at colorful birdlife, and immerse yourself in local culture with a focus on responsible tourism.",
     includes:
-      "Yala, Wilpattu, Minneriya, Udawalawe, Horton Plains, Knuckles Range, Sinharaja Rain Forest",
-    link: "#wildlife",
+      "Yala National Park, Udawalawe Elephant Transit Home, Sinharaja, Whale Watching",
+    link: "/wildlife-nature",
   },
   {
     id: 3,
@@ -98,16 +99,25 @@ const Packages = () => {
                   <span className="package-subtitle">{pkg.subtitle}</span>
                   <p className="package-desc">{pkg.description}</p>
 
-                  <div className="package-includes-box">
-                    <span className="includes-label">
-                      <MapPin size={14} className="me-2" /> Destinations
-                    </span>
-                    <p className="includes-text">{pkg.includes} More ..</p>
+                  <div className="package-includes-box mb-4">
+                    <div className="d-flex align-items-center gap-2 mb-2">
+                      <MapPin size={18} className="text-secondary" />
+                      <span className="fw-bold text-secondary text-uppercase small ls-1">
+                        Destinations
+                      </span>
+                    </div>
+                    <p className="includes-text m-0">{pkg.includes} More ..</p>
                   </div>
 
-                  <a href={pkg.link} className="btn-explore">
-                    View Itinerary <ArrowRight size={18} />
-                  </a>
+                  {pkg.link.startsWith("/") ? (
+                    <Link to={pkg.link} className="bento-link">
+                      View Details <ArrowRight size={16} />
+                    </Link>
+                  ) : (
+                    <a href={pkg.link} className="bento-link">
+                      View Details <ArrowRight size={16} />
+                    </a>
+                  )}
                 </div>
               </div>
             </motion.div>
