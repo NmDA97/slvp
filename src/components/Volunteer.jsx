@@ -49,10 +49,10 @@ const Volunteer = () => {
           <img
             src={logoVac}
             alt="SLVP Logo"
-            className="mx-auto mb-3"
+            className="mx-auto mb-1"
             style={{ height: "60px" }}
           />
-          <span className="d-block text-uppercase letter-spacing-3 text-secondary fw-bold mb-2 small">
+          <span className="d-block text-uppercase letter-spacing-3 text-accent fw-bold mb-2 small">
             Make a Difference
           </span>
           <h2 className="display-4 fw-bold text-primary mb-3">
@@ -93,15 +93,15 @@ const Volunteer = () => {
               </div>
               <div className="package-info-col">
                 <div className="package-info-content">
-                  <span className="package-subtitle">{program.subtitle}</span>
                   <h3 className="package-title">{program.title}</h3>
+                  <span className="package-subtitle">{program.subtitle}</span>
                   <p className="package-desc">{program.description}</p>
 
                   <div className="package-includes-box">
                     <span className="includes-label">
-                      <Heart size={14} className="me-1" /> Project Focus
+                      <Heart size={14} className="me-2" /> Project Focus
                     </span>
-                    <p className="includes-text">{program.details}</p>
+                    <p className="includes-text">{program.details} More ..</p>
                   </div>
 
                   <a href={program.link} className="btn-explore">

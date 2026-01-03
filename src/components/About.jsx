@@ -33,7 +33,7 @@ const About = () => {
 
   return (
     <>
-      <section id="about" className="section-about pt-5 pb-0">
+      <section id="about" className="section-about pt-5 pb-5">
         <div className="container">
           <div className="welcome-grid">
             <div className="welcome-content">
@@ -258,11 +258,6 @@ const About = () => {
                 </div>
               </motion.div>
             </div>
-          </div>
-          <div className="text-center mt-5">
-            <a href="#tours" className="btn btn-primary">
-              Learn More About Us
-            </a>
           </div>
         </div>
       </section>

@@ -248,6 +248,10 @@ img {
   color: var(--white); /* White toggle initially */
 }
 
+.mobile-close {
+  display: none; /* Hidden on desktop */
+}
+
 .navbar.scrolled .mobile-toggle {
   color: var(--primary-color); /* Dark toggle when scrolled */
 }
@@ -269,17 +273,39 @@ img {
     position: fixed;
     top: 0;
     right: -100%; /* Hidden by default */
-    width: 80%;
+    width: 100%; /* Full width for better experience */
     height: 100vh;
-    background-color: var(--white);
+    background-color: rgba(255, 255, 255, 0.95); /* Light semi-transparent */
+    backdrop-filter: blur(10px); /* Glass effect */
     flex-direction: column;
     justify-content: center;
-    box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+    align-items: center;
+    gap: 2rem; /* Consistent gap */
+    box-shadow: none;
     transition: right 0.3s ease;
+    z-index: 1001; /* Ensure above everything */
+  }
+
+  .nav-links a {
+    font-size: 1.25rem; /* Larger text for mobile */
+    color: var(--text-dark); /* Dark text for light background */
+    padding: 0.5rem;
+    font-weight: 600;
   }
 
   .nav-links.active {
     right: 0;
+  }
+  
+  .mobile-close {
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+    background: none;
+    border: none;
+    color: var(--text-dark); /* Dark icon */
+    cursor: pointer;
+    display: block;
   }
 }
 
@@ -385,7 +411,7 @@ img {
   grid-template-columns: 1fr 1fr;
   gap: 3rem;
   align-items: center;
-  margin-bottom: 3rem;
+  margin-bottom: 0; /* Remove double gap */
 }
 
 .welcome-content .section-title {
@@ -756,7 +782,7 @@ img {
 }
 
 .bg-azure {
-    background-color: #f0f7f8; /* Very light cool teal/azure */
+    background-color: rgba(14, 59, 67, 0.04); /* Consistent Rich Tint */
 }
 
 /* Packages Section - Feature Row Layout */
@@ -791,7 +817,14 @@ img {
     border-radius: 20px;
     overflow: hidden;
     position: relative;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+    position: relative;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1); /* Base shadow */
+    transition: all 0.5s ease; /* Smooth Float Transition */
+}
+
+.package-row:hover .package-img-wrapper {
+    transform: translateY(-10px); /* Lift up */
+    box-shadow: 0 20px 40px rgba(0,0,0,0.2); /* Deeper shadow */
 }
 
 .package-img-wrapper img {
@@ -819,16 +852,32 @@ img {
 }
 
 .package-subtitle {
-    display: inline-block;
-    padding: 0.5rem 1rem;
-    background-color: rgba(244, 162, 97, 0.1);
-    color: var(--accent-dark);
-    font-weight: 600;
-    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0;
+    background-color: transparent;
+    color: var(--accent-dark); /* Refined Orange/Terracotta */
+    font-weight: 700;
+    font-size: 0.8rem;
     text-transform: uppercase;
-    letter-spacing: 1px;
-    border-radius: 50px;
-    margin-bottom: 1rem;
+    letter-spacing: 3px; /* Very wide tracking */
+    margin-bottom: 0.5rem;
+    margin-top: 0.5rem; /* Slight separation from title */
+}
+
+.package-subtitle::before {
+    content: '';
+    display: none; /* Hidden on mobile */
+    width: 40px; 
+    height: 1px;
+    background-color: var(--accent-color);
+}
+
+@media (min-width: 768px) {
+    .package-subtitle::before {
+        display: block; /* Show on desktop */
+    }
 }
 
 .package-desc {
@@ -839,11 +888,10 @@ img {
 }
 
 .package-includes-box {
-    background: transparent;
-    padding: 0;
-    border: none;
-    border-left: 3px solid var(--accent-color);
-    padding-left: 1rem;
+    background: rgba(14, 59, 67, 0.04); /* Low background color */
+    padding: 1.25rem;
+    border-radius: 12px;
+    border-left: 4px solid var(--accent-color);
     margin-bottom: 2rem;
     box-shadow: none;
 }
@@ -851,6 +899,7 @@ img {
 .includes-label {
     display: flex;
     align-items: center;
+    gap: 0.8rem; /* Force visible gap */
     font-weight: 700;
     font-size: 0.85rem;
     text-transform: uppercase;
@@ -859,9 +908,10 @@ img {
 }
 
 .includes-text {
-    font-size: 0.95rem;
-    color: var(--text-light);
-    line-height: 1.5;
+    font-size: 1rem;
+    color: var(--primary-color); /* Darker text */
+    font-weight: 500;
+    line-height: 1.6;
     margin-bottom: 0 !important; /* Override generic margin */
 }
 

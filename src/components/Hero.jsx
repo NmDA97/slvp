@@ -25,8 +25,18 @@ const Hero = () => {
   // Scale from 1 to 1.5 as user scrolls down
   const scale = useTransform(scrollYProgress, [0, 1], [1, 1.5]);
 
-  // Fade out content as user scrolls
-  const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
+  // Parallax Y movement: Balanced downward movement
+  const y = useTransform(scrollYProgress, [0, 1], [0, 200]);
+
+  // Blur effect: Starts blurring at 40% scroll
+  const blur = useTransform(
+    scrollYProgress,
+    [0.4, 0.85],
+    ["blur(0px)", "blur(10px)"]
+  );
+
+  // Fade out effect: Starts fading at 40% scroll
+  const opacity = useTransform(scrollYProgress, [0.4, 0.85], [1, 0]);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -61,7 +71,12 @@ const Hero = () => {
         <div className="hero-overlay"></div>
         <motion.div
           className="hero-content text-center"
-          style={{ opacity: opacity, color: "var(--white)" }}
+          style={{
+            opacity: opacity,
+            y: y,
+            filter: blur,
+            color: "var(--white)",
+          }}
         >
           <h1 className="hero-title" style={{ color: "var(--white)" }}>
             Discover the Soul of <span className="highlight">Sri Lanka</span>

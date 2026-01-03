@@ -85,7 +85,7 @@ const WhyUs = () => {
   }, []);
 
   return (
-    <section id="why-us" className="section-why-us py-5 bg-light">
+    <section id="why-us" className="section-why-us pt-5 mt-5  pb-0 bg-light">
       <div className="container">
         <div className="why-us-header text-center mb-5">
           <img src={logoVac} alt="SLVP Logo" className="why-us-logo mx-auto" />

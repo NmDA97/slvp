@@ -52,12 +52,12 @@ const Packages = () => {
           <img
             src={logoVac}
             alt="SLVP Logo"
-            className="mx-auto mb-3"
+            className="mx-auto mb-1"
             style={{ height: "70px" }}
           />
-          {/* <span className="d-block text-uppercase letter-spacing-3 text-secondary fw-bold mb-2 small">
+          <span className="d-block text-uppercase letter-spacing-3 text-accent fw-bold mb-2 small">
             Discover Sri Lanka
-          </span> */}
+          </span>
           <h2 className="display-4 fw-bold text-primary mb-3">Tour Packages</h2>
           <div
             className="mx-auto mb-4"
@@ -94,15 +94,15 @@ const Packages = () => {
               </div>
               <div className="package-info-col">
                 <div className="package-info-content">
-                  <span className="package-subtitle">{pkg.subtitle}</span>
                   <h3 className="package-title">{pkg.title}</h3>
+                  <span className="package-subtitle">{pkg.subtitle}</span>
                   <p className="package-desc">{pkg.description}</p>
 
                   <div className="package-includes-box">
                     <span className="includes-label">
-                      <MapPin size={14} className="me-1" /> Destinations
+                      <MapPin size={14} className="me-2" /> Destinations
                     </span>
-                    <p className="includes-text">{pkg.includes}</p>
+                    <p className="includes-text">{pkg.includes} More ..</p>
                   </div>
 
                   <a href={pkg.link} className="btn-explore">

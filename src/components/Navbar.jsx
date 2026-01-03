@@ -20,7 +20,7 @@ const Navbar = () => {
         "tours",
         "contact",
       ];
-      const scrollPosition = window.scrollY + 100;
+      const scrollPosition = window.scrollY + 300;
 
       for (const section of sections) {
         const element = document.getElementById(section);
@@ -46,6 +46,9 @@ const Navbar = () => {
         </a>
 
         <div className={`nav-links ${isOpen ? "active" : ""}`}>
+          <button className="mobile-close" onClick={() => setIsOpen(false)}>
+            <X size={24} />
+          </button>
           <a
             href="#home"
             className={activeSection === "home" ? "active" : ""}
