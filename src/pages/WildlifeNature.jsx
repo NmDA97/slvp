@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { ArrowRight, ChevronDown } from "lucide-react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import Navbar from "../components/Navbar";
@@ -131,40 +131,57 @@ const WildlifeNature = () => {
             EXPERIENCE THE UNTAMED BEAUTY OF SRI LANKA WITH WILDLIFE & NATURE
             PARADISE TOURS
           </motion.h2>
-          <motion.p
-            className="intro-text"
+          <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            Welcome to the world of Wildlife & Nature Paradise Tours, where you
-            can embark on a captivating journey through the enchanting
-            landscapes of Sri Lanka. Prepare to be mesmerized by the
-            breathtaking beauty of lush rainforests, misty mountains, and
-            vibrant national parks. Immerse yourself in the wonders of the
-            island's wildlife as you encounter majestic elephants, elusive
-            leopards, and a kaleidoscope of colorful birdlife. Our commitment to
-            responsible tourism ensures that your experience not only connects
-            you with nature but also contributes to the conservation efforts of
-            the local ecosystem.
-            <br />
-            <br />
-            But that's not all! Our tour packages go beyond wildlife
-            exploration. They also offer opportunities to delve into the rich
-            heritage, culture, and traditions of Sri Lanka. Discover ancient
-            temples, magnificent palaces, and UNESCO World Heritage sites that
-            showcase the island's fascinating history. And when it's time to
-            relax, indulge in the serene beauty of Sri Lanka's pristine beaches.
-            <br />
-            <br />
-            Choose the tour that best matches your interests, or share your
-            thoughts with us, and we'll create a customized itinerary
-            exclusively for you. Join us on this extraordinary journey to
-            uncover the secrets of Sri Lanka's rich biodiversity, experience its
-            vibrant culture, and immerse yourself in the true paradise of
-            wildlife and natural beauty.
-          </motion.p>
+            <p className="intro-text">
+              Welcome to the world of Wildlife & Nature Paradise Tours, where
+              you can embark on a captivating journey through the enchanting
+              landscapes of Sri Lanka. Prepare to be mesmerized by the
+              breathtaking beauty of lush rainforests, misty mountains, and
+              vibrant national parks. Immerse yourself in the wonders of the
+              island's wildlife as you encounter majestic elephants, elusive
+              leopards, and a kaleidoscope of colorful birdlife. Our commitment
+              to responsible tourism ensures that your experience not only
+              connects you with nature but also contributes to the conservation
+              efforts of the local ecosystem.
+            </p>
+
+            <div
+              className={`welcome-collapsible ${isExpanded ? "expanded" : ""}`}
+            >
+              <p className="intro-text">
+                But that's not all! Our tour packages go beyond wildlife
+                exploration. They also offer opportunities to delve into the
+                rich heritage, culture, and traditions of Sri Lanka. Discover
+                ancient temples, magnificent palaces, and UNESCO World Heritage
+                sites that showcase the island's fascinating history. And when
+                it's time to relax, indulge in the serene beauty of Sri Lanka's
+                pristine beaches.
+              </p>
+              <p className="intro-text">
+                Choose the tour that best matches your interests, or share your
+                thoughts with us, and we'll create a customized itinerary
+                exclusively for you. Join us on this extraordinary journey to
+                uncover the secrets of Sri Lanka's rich biodiversity, experience
+                its vibrant culture, and immerse yourself in the true paradise
+                of wildlife and natural beauty.
+              </p>
+            </div>
+
+            {!isExpanded && (
+              <button
+                className="read-more-btn"
+                onClick={() => setIsExpanded(true)}
+                style={{ margin: "1rem auto 0" }} // Center button
+              >
+                Read More...
+              </button>
+            )}
+          </motion.div>
         </div>
       </section>
 

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { ArrowRight, MapPin, ChevronDown } from "lucide-react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import Navbar from "../components/Navbar";
@@ -62,6 +62,8 @@ const CoastalGetaways = () => {
     },
   ];
 
+  const [isExpanded, setIsExpanded] = useState(false);
+
   return (
     <div className="coastal-page">
       <Navbar />
@@ -119,27 +121,47 @@ const CoastalGetaways = () => {
           >
             Explore Sri Lanka's stunning coastline with our expert guides
           </motion.h2>
-          <motion.p
-            className="intro-text"
+
+          <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            Welcome to the Coastal Getaways offered by SLVP, where we invite you
-            to embark on unforgettable beach holidays. Indulge in a perfect
-            blend of exploration and relaxation as you discover the best
-            attractions of Sri Lanka while immersing yourself in the tranquility
-            of its stunning beaches. Our tours go beyond the ordinary, placing a
-            special emphasis on providing you with unforgettable beach
-            experiences. Picture yourself basking in the warm sun on golden
-            sands, feeling the gentle breeze caress your skin, and listening to
-            the soothing rhythm of the waves. From secluded coves to vibrant
-            beachfronts, our Coastal Getaways take you to the most picturesque
-            beaches in Sri Lanka, where you can unwind, rejuvenate, and create
-            cherished memories. Let SLVP guide you to these idyllic coastal
-            destinations, where the magic of beach holidays awaits.
-          </motion.p>
+            <p className="intro-text">
+              Welcome to the Coastal Getaways offered by SLVP, where we invite
+              you to embark on unforgettable beach holidays. Indulge in a
+              perfect blend of exploration and relaxation as you discover the
+              best attractions of Sri Lanka while immersing yourself in the
+              tranquility of its stunning beaches.
+            </p>
+
+            <div
+              className={`welcome-collapsible ${isExpanded ? "expanded" : ""}`}
+            >
+              <p className="intro-text">
+                Our tours go beyond the ordinary, placing a special emphasis on
+                providing you with unforgettable beach experiences. Picture
+                yourself basking in the warm sun on golden sands, feeling the
+                gentle breeze caress your skin, and listening to the soothing
+                rhythm of the waves. From secluded coves to vibrant beachfronts,
+                our Coastal Getaways take you to the most picturesque beaches in
+                Sri Lanka, where you can unwind, rejuvenate, and create
+                cherished memories. Let SLVP guide you to these idyllic coastal
+                destinations, where the magic of beach holidays awaits.
+              </p>
+            </div>
+
+            {!isExpanded && (
+              <button
+                className="read-more-btn"
+                onClick={() => setIsExpanded(true)}
+                style={{ margin: "1rem auto 0" }} // Center button
+              >
+                Read More...
+              </button>
+            )}
+          </motion.div>
         </div>
       </section>
 
