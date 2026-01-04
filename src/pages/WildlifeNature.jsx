@@ -15,6 +15,7 @@ import tour5 from "../assets/wildlife/winged.jpg";
 const WildlifeNature = () => {
   const { scrollY } = useScroll();
   const y = useTransform(scrollY, [0, 500], [0, 200]);
+  const [isExpanded, setIsExpanded] = useState(false);
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "instant" });
