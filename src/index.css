@@ -291,6 +291,10 @@ img {
     color: var(--text-dark); /* Dark text for light background */
     padding: 0.5rem;
     font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
   }
 
   .nav-links.active {
@@ -949,14 +953,20 @@ img {
 @media (max-width: 900px) {
     .package-row, .package-row.reverse {
         flex-direction: column;
-        gap: 2rem;
+        gap: 2rem; /* Restore gap */
         min-height: auto;
         text-align: center;
+        /* Removed card styles to restore original look */
     }
     
     .package-image-col {
         width: 100%;
-        height: 300px;
+        height: 350px !important; /* Force strict height */
+        flex: none; /* Prevent shrinking */
+    }
+
+    .package-img-wrapper {
+        height: 100% !important;
     }
 
     .package-info-col {

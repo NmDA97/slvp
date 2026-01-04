@@ -38,7 +38,7 @@ const packages = [
       "Explore Sri Lanka's rich heritage and cultural wonders. Visit UNESCO World Heritage sites, marvel at ancient temples and ruins, and experience vibrant traditions alongside stunning nature.",
     includes:
       "Anuradhapura, Polonnaruwa, Sigiriya, Dambulla, Kandy, Nuwara Eliya, Ella, Galle, Jaffna",
-    link: "#heritage",
+    link: "/ceylon-chronicles",
   },
 ];
 

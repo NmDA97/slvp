@@ -6,14 +6,13 @@ import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import "../components/CoastalGetaways.css"; // Reuse same styles
 
-import heroImg from "../assets/packages/wildlife.jpg";
-import tour1 from "../assets/wildlife/discover.jpg";
-import tour2 from "../assets/wildlife/essential.jpg";
-import tour3 from "../assets/wildlife/odyssey_w.jpg";
-import tour4 from "../assets/wildlife/nature.jpg";
-import tour5 from "../assets/wildlife/winged.jpg";
+// Images
+import heroImg from "../assets/packages/chronicles.jpg";
+import tourOdyssey from "../assets/chronicles/sl_odyssey.webp";
+import tourHeritage from "../assets/chronicles/heritage_trail.jpg";
+import tourCultural from "../assets/chronicles/cultural.jpg";
 
-const WildlifeNature = () => {
+const CeylonChronicles = () => {
   const { scrollY } = useScroll();
   const y = useTransform(scrollY, [0, 500], [0, 200]);
   const [isExpanded, setIsExpanded] = useState(false);
@@ -24,34 +23,24 @@ const WildlifeNature = () => {
 
   const tours = [
     {
-      id: 2,
-      title: "Essential Sri Lanka - Discover the soul of Sri Lanka.",
-      duration: "7 Days",
-      subtitle: "Soul of Sri Lanka",
-      description:
-        'Experience the essence of Sri Lanka in just 7 days with our "Essential Sri Lanka" tour, packed with cultural, historical and scenic highlights that will leave you mesmerized.',
-      image: tour2,
-      tag: "Culture",
-    },
-    {
-      id: 5,
-      title: "Winged Odyssey - uncover the stunning avifauna of Sri Lanka",
-      duration: "10 Days",
-      subtitle: "Bird Lover's Dream",
-      description:
-        "Explore the exotic birdlife of Sri Lanka with our \"Winged Odyssey\" tour, a 10-day journey that takes you through the country's stunning landscapes and diverse habitats, A bird lover's dream tour.",
-      image: tour5,
-      tag: "Birding",
-    },
-    {
       id: 1,
-      title: "Discover Sri Lanka - Your Island Paradise",
-      duration: "11 Days",
-      subtitle: "Island Paradise",
+      title: "The Cultural Triangle and Beyond",
+      duration: "5 Days",
+      subtitle: "Ancient Wonders",
       description:
-        "“Discover Sri Lanka in 10 breathtaking days of beauty to showcase what Sri Lanka has to offer”",
-      image: tour1,
-      tag: "Nature",
+        "Discover the wonders of Sri Lanka on our five-day tour, 'The Cultural Triangle and Beyond.'",
+      image: tourCultural,
+      tag: "Heritage",
+    },
+    {
+      id: 2,
+      title: "Heritage Trail of Sri Lanka",
+      duration: "6 Days",
+      subtitle: "History & Tradition",
+      description:
+        "Immerse Yourself in History, Beauty, and Tradition on this 06-Day Heritage Trail Tour",
+      image: tourHeritage,
+      tag: "Culture",
     },
     {
       id: 3,
@@ -60,18 +49,8 @@ const WildlifeNature = () => {
       subtitle: "Mystical Odyssey",
       description:
         'Embark on an unforgettable adventure through Sri Lanka\'s diverse landscapes and rich cultural heritage with our "Sri Lankan Odyssey" tour.',
-      image: tour3,
+      image: tourOdyssey,
       tag: "Adventure",
-    },
-    {
-      id: 4,
-      title: "The Ultimate Nature Trail - Meet the serenity of the wild",
-      duration: "21 Days",
-      subtitle: "Serenity of the Wild",
-      description:
-        "Immerse yourself in Sri Lanka's breathtaking natural beauty on our \"Ultimate Nature Trail\" tour, where you'll discover stunning landscapes, diverse wildlife and tranquil hideaways",
-      image: tour4,
-      tag: "Wildlife",
     },
   ];
 
@@ -83,7 +62,7 @@ const WildlifeNature = () => {
       <section className="coastal-hero">
         <motion.img
           src={heroImg}
-          alt="Wildlife Hero"
+          alt="Ceylon Chronicles Hero"
           className="coastal-hero-bg"
           style={{ y }}
         />
@@ -96,7 +75,7 @@ const WildlifeNature = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
           >
-            Wildlife & Nature Paradise Tours
+            Ceylon Chronicles
           </motion.h1>
         </div>
 
@@ -132,7 +111,7 @@ const WildlifeNature = () => {
               Tours
             </Link>
             <span>•</span>
-            <span className="breadcrumb-active">Wildlife & Nature</span>
+            <span className="breadcrumb-active">Ceylon Chronicles</span>
           </motion.div>
           <motion.h2
             className="intro-heading"
@@ -141,8 +120,8 @@ const WildlifeNature = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
           >
-            EXPERIENCE THE UNTAMED BEAUTY OF SRI LANKA WITH WILDLIFE & NATURE
-            PARADISE TOURS
+            DISCOVER THE RICH CULTURE AND EXTENSIVE HISTORY WHILST EXPLORING THE
+            EXOTIC BEAUTY OF SRI LANKA
           </motion.h2>
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -151,37 +130,33 @@ const WildlifeNature = () => {
             transition={{ duration: 0.8, delay: 0.2 }}
           >
             <p className="intro-text">
-              Welcome to the world of Wildlife & Nature Paradise Tours, where
-              you can embark on a captivating journey through the enchanting
-              landscapes of Sri Lanka. Prepare to be mesmerized by the
-              breathtaking beauty of lush rainforests, misty mountains, and
-              vibrant national parks. Immerse yourself in the wonders of the
-              island's wildlife as you encounter majestic elephants, elusive
-              leopards, and a kaleidoscope of colorful birdlife. Our commitment
-              to responsible tourism ensures that your experience not only
-              connects you with nature but also contributes to the conservation
-              efforts of the local ecosystem.
+              Welcome to our extraordinary Heritage Tour packages by SLVP (Sri
+              Lanka Vacation Planners). Immerse yourself in the enchanting world
+              of Sri Lanka's rich history and cultural heritage as you explore
+              the renowned UNESCO World Heritage sites. From the grandeur of
+              Anuradhapura's palaces and sacred temples to the awe-inspiring
+              ruins of Polonnaruwa, each step takes you back in time. Ascend the
+              iconic Sigiriya Lion Rock, marvel at its breathtaking frescoes,
+              and soak in the panoramic views. Discover the spiritual haven of
+              Dambulla Cave Temple, a treasure trove of ancient art and
+              serenity.
             </p>
 
             <div
               className={`welcome-collapsible ${isExpanded ? "expanded" : ""}`}
             >
               <p className="intro-text">
-                But that's not all! Our tour packages go beyond wildlife
-                exploration. They also offer opportunities to delve into the
-                rich heritage, culture, and traditions of Sri Lanka. Discover
-                ancient temples, magnificent palaces, and UNESCO World Heritage
-                sites that showcase the island's fascinating history. And when
-                it's time to relax, indulge in the serene beauty of Sri Lanka's
-                pristine beaches.
-              </p>
-              <p className="intro-text">
-                Choose the tour that best matches your interests, or share your
-                thoughts with us, and we'll create a customized itinerary
-                exclusively for you. Join us on this extraordinary journey to
-                uncover the secrets of Sri Lanka's rich biodiversity, experience
-                its vibrant culture, and immerse yourself in the true paradise
-                of wildlife and natural beauty.
+                Immerse yourself in the vibrant traditions of Kandy, visit the
+                revered Temple of the Tooth, and witness captivating rituals.
+                Wander through Galle's well-preserved fortifications, a
+                testament to the fusion of European and Asian influences. These
+                tours also offer the opportunity to experience the best of Sri
+                Lanka's nature, adventure, and stunning beaches. Explore lush
+                rainforests, encounter diverse wildlife, and unwind on pristine
+                coastlines. Choose your perfect tour package or share your
+                suggestions for a customized tour. Join us on this unforgettable
+                journey to experience the exotic beauty, rich culture, and
+                extensive history of Sri Lanka.
               </p>
             </div>
 
@@ -249,4 +224,4 @@ const WildlifeNature = () => {
   );
 };
 
-export default WildlifeNature;
+export default CeylonChronicles;

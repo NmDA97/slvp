@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom"; // Import Link
 import { ArrowRight, MapPin, ChevronDown } from "lucide-react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import Navbar from "../components/Navbar";
@@ -21,16 +22,6 @@ const CoastalGetaways = () => {
 
   const tours = [
     {
-      id: 1,
-      title: "Beach Bliss: Discovering Sri Lanka's Best Beaches",
-      duration: "16 Days",
-      subtitle: "Unwind and Rejuvenate",
-      description:
-        "“Unwind and rejuvenate on Sri Lanka's stunning coastlines - 3 beaches, 8 nights of blissful relaxation and adventure!”",
-      image: tour1,
-      tag: "Relaxation",
-    },
-    {
       id: 2,
       title: "Serene Shores and Thrilling Trails: A Beach and Adventure Tour",
       duration: "7 Days",
@@ -39,6 +30,16 @@ const CoastalGetaways = () => {
         'Experience the Ultimate Sri Lankan Beach Getaway: 7 Nights on 3 Beaches. Trekking, White Water Rafting, and More!"',
       image: tour2,
       tag: "Adventure",
+    },
+    {
+      id: 4,
+      title: "Sandy Serenity: A Beach and Culture Tour of Sri Lanka",
+      duration: "10 Days",
+      subtitle: "Sun, Sand & Culture",
+      description:
+        "Indulge in Sri Lanka's Beach Paradise: 10 Days of Sun, Sand, and Culture!",
+      image: tour4,
+      tag: "Combo",
     },
     {
       id: 3,
@@ -51,14 +52,14 @@ const CoastalGetaways = () => {
       tag: "Culture",
     },
     {
-      id: 4,
-      title: "Sandy Serenity: A Beach and Culture Tour of Sri Lanka",
-      duration: "10 Days",
-      subtitle: "Sun, Sand & Culture",
+      id: 1,
+      title: "Beach Bliss: Discovering Sri Lanka's Best Beaches",
+      duration: "16 Days",
+      subtitle: "Unwind and Rejuvenate",
       description:
-        "Indulge in Sri Lanka's Beach Paradise: 10 Days of Sun, Sand, and Culture!",
-      image: tour4,
-      tag: "Combo",
+        "“Unwind and rejuvenate on Sri Lanka's stunning coastlines - 3 beaches, 8 nights of blissful relaxation and adventure!”",
+      image: tour1,
+      tag: "Relaxation",
     },
   ];
 
@@ -87,16 +88,6 @@ const CoastalGetaways = () => {
           >
             Coastal Getaways
           </motion.h1>
-          <motion.div
-            className="coastal-breadcrumb"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.5, duration: 0.8 }}
-          >
-            <span>Home</span>
-            <span>•</span>
-            <span className="breadcrumb-active">Coastal Getaways</span>
-          </motion.div>
         </div>
 
         <motion.div
@@ -112,6 +103,27 @@ const CoastalGetaways = () => {
       {/* Intro Section */}
       <section className="coastal-intro">
         <div className="intro-container">
+          <motion.div
+            className="coastal-breadcrumb"
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+          >
+            <Link to="/" className="breadcrumb-link">
+              Home
+            </Link>
+            <span>•</span>
+            <Link
+              to="/"
+              state={{ scrollTo: "tours" }}
+              className="breadcrumb-link"
+            >
+              Tours
+            </Link>
+            <span>•</span>
+            <span className="breadcrumb-active">Coastal Getaways</span>
+          </motion.div>
           <motion.h2
             className="intro-heading"
             initial={{ opacity: 0, y: 30 }}
@@ -171,6 +183,7 @@ const CoastalGetaways = () => {
           {tours.map((tour, index) => (
             <motion.div
               key={tour.id}
+              id={`tour-${tour.id}`}
               className={`coastal-card ${index % 2 === 1 ? "reverse" : ""}`}
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}

@@ -60,16 +60,33 @@
   align-items: center;
   justify-content: center;
   gap: 0.8rem;
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   text-transform: uppercase;
-  letter-spacing: 3px;
+  letter-spacing: 1.5px;
   font-weight: 600;
-  color: rgba(255, 255, 255, 0.9);
-  padding: 0.8rem 1.5rem;
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
-  border-radius: 50px;
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: var(--text-light); /* Dark text */
+  padding: 0.5rem 0; /* Remove horizontal padding */
+  background: transparent; /* No background */
+  backdrop-filter: none;
+  border: none;
+  margin-bottom: 2rem; /* Add spacing below */
+}
+
+.breadcrumb-link {
+  color: var(--text-light);
+  text-decoration: none;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.breadcrumb-link:hover {
+  color: var(--accent-color); /* Accent on hover */
+  text-shadow: none;
+}
+
+.breadcrumb-active {
+  color: var(--primary-color); /* Primary color for active */
+  font-weight: 700;
 }
 
 .scroll-indicator {
@@ -159,6 +176,7 @@
   overflow: hidden;
   box-shadow: 0 10px 30px rgba(0,0,0,0.08); /* Soft shadow */
   transition: all 0.5s ease;
+  height: 400px; /* Fixed uniform height */
 }
 
 .coastal-card:hover {
@@ -171,8 +189,8 @@
 }
 
 .card-content {
-  flex: 1;
-  padding: 3rem;
+  flex: 0 0 50%; /* Fixed 50% width */
+  padding: 2rem; /* Reduced padding */
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -180,8 +198,8 @@
 }
 
 .card-image-wrapper {
-  flex: 1;
-  min-height: 350px;
+  flex: 0 0 50%; /* Fixed 50% width */
+  min-height: 250px;
   position: relative;
   overflow: hidden;
 }
@@ -212,11 +230,18 @@
 }
 
 .card-title {
-  font-size: 2rem;
+  font-size: 1.5rem;
   color: var(--primary-color);
   font-weight: 800;
   margin-bottom: 0.5rem;
   line-height: 1.2;
+  
+  /* Line Clamping */
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2; /* Standard property */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 .card-subtitle-row {
@@ -242,8 +267,15 @@
 
 .card-desc {
   color: var(--text-light);
-  margin-bottom: 2rem;
-  font-size: 1rem;
+  margin-bottom: 1rem;
+  font-size: 0.95rem;
+  
+  /* Line Clamping */
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  line-clamp: 3; /* Standard property */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 .btn-card {
@@ -289,15 +321,20 @@
   .coastal-card,
   .coastal-card.reverse {
     flex-direction: column;
+    height: auto; /* Allow height to grow with content */
   }
   
   .card-image-wrapper {
-    min-height: 250px;
+    min-height: 250px; /* Keep height constraint */
     height: 250px;
+    width: 100%;
+    flex: none; /* Reset flex sizing */
   }
   
   .card-content {
     padding: 2rem;
+    width: 100%;
+    flex: none; /* Reset flex sizing */
   }
   
   .coastal-title {
