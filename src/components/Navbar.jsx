@@ -139,7 +139,7 @@ const Navbar = () => {
     { id: "offer", label: "What we offer" },
     { id: "why-us", label: "Why SLVP?" },
     { id: "tours", label: "Tours", isDropdown: true }, // Mark as dropdown
-    { id: "volunteer", label: "Volunteer" },
+    { id: "volunteer", label: "Volunteer", path: "/volunteer-work" },
     { id: "contact", label: "Contact us" },
   ];
 
@@ -247,9 +247,22 @@ const Navbar = () => {
             return (
               <a
                 key={item.id}
-                href={`#${item.id}`}
-                className={activeSection === item.id ? "active" : ""}
-                onClick={(e) => handleNavClick(item.id, e)}
+                href={item.path || `#${item.id}`}
+                className={
+                  activeSection === item.id ||
+                  (item.path && location.pathname === item.path)
+                    ? "active"
+                    : ""
+                }
+                onClick={(e) => {
+                  if (item.path) {
+                    e.preventDefault();
+                    navigate(item.path);
+                    setIsOpen(false);
+                  } else {
+                    handleNavClick(item.id, e);
+                  }
+                }}
               >
                 {item.label}
               </a>

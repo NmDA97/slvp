@@ -12,6 +12,9 @@ import { Routes, Route } from "react-router-dom";
 import CoastalGetaways from "./pages/CoastalGetaways";
 import WildlifeNature from "./pages/WildlifeNature";
 import CeylonChronicles from "./pages/CeylonChronicles";
+import VolunteerWork from "./pages/VolunteerWork";
+import VolunteerWildlife from "./pages/VolunteerWildlife";
+import VolunteerCombined from "./pages/VolunteerCombined"; // Import new page
 
 function App() {
   return (
@@ -38,6 +41,13 @@ function App() {
         <Route path="/coastal-getaways" element={<CoastalGetaways />} />
         <Route path="/wildlife-nature" element={<WildlifeNature />} />
         <Route path="/ceylon-chronicles" element={<CeylonChronicles />} />
+        <Route path="/volunteer-work" element={<VolunteerWork />} />
+        <Route path="/volunteer-wildlife" element={<VolunteerWildlife />} />
+        <Route
+          path="/volunteer-combined"
+          element={<VolunteerCombined />}
+        />{" "}
+        {/* New route */}
       </Routes>
     </div>
   );

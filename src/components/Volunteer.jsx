@@ -1,4 +1,5 @@
 import { ArrowRight, Heart } from "lucide-react";
+import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import logoVac from "../assets/volunteer/logosmall_v.png";
 import childImg from "../assets/volunteer/child.png";
@@ -15,7 +16,7 @@ const programs = [
       "Looking for a meaningful volunteer experience that can truly transform lives? Whether you have a passion for working in children's homes, teaching English in local schools, supporting children with special needs, or coaching sports, we have an opportunity that will fulfill your desire to make a real difference.",
     details:
       "Children's Homes, Teaching English, Special Needs Support, Sports Coaching",
-    link: "#children",
+    link: "/volunteer-work",
   },
   {
     id: 2,
@@ -25,7 +26,7 @@ const programs = [
     description:
       "Experience the wonders of wildlife conservation with SLVP's volunteer projects. Protect endangered sea turtles and provide essential support to gentle giants. Make a lasting impact and be a part of preserving these incredible creatures.",
     details: "Sea Turtle Conservation, Elephant Care & Welfare",
-    link: "#wildlife-conservation",
+    link: "/volunteer-wildlife",
   },
   {
     id: 3,
@@ -36,7 +37,7 @@ const programs = [
       "Make the most of your valuable time with our flexible combined volunteer projects. We offer you the unique opportunity to select any two projects that resonate with you the most. Customize your volunteer experience and maximize your impact in the areas that inspire you.",
     details:
       "Combine: Children's Work + Sea Turtle Conservation + Elephant Care",
-    link: "#combined",
+    link: "/volunteer-combined",
   },
 ];
 
@@ -104,9 +105,9 @@ const Volunteer = () => {
                     <p className="includes-text">{program.details} More ..</p>
                   </div>
 
-                  <a href={program.link} className="btn-explore">
+                  <Link to={program.link} className="btn-explore">
                     View Project Details <ArrowRight size={18} />
-                  </a>
+                  </Link>
                 </div>
               </div>
             </motion.div>

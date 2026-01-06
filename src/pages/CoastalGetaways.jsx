@@ -185,10 +185,15 @@ const CoastalGetaways = () => {
               key={tour.id}
               id={`tour-${tour.id}`}
               className={`coastal-card ${index % 2 === 1 ? "reverse" : ""}`}
-              initial={{ opacity: 0, y: 50 }}
+              initial={
+                index === 0 ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }
+              }
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.1 }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
+              transition={{
+                duration: index === 0 ? 0 : 0.6,
+                delay: index === 0 ? 0 : index * 0.1,
+              }}
             >
               {/* Content Column */}
               <div className="card-content">
@@ -216,7 +221,12 @@ const CoastalGetaways = () => {
 
               {/* Image Column */}
               <div className="card-image-wrapper">
-                <img src={tour.image} alt={tour.title} className="card-image" />
+                <img
+                  src={tour.image}
+                  alt={tour.title}
+                  className="card-image"
+                  loading="eager"
+                />
               </div>
             </motion.div>
           ))}
