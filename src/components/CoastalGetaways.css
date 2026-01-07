@@ -566,8 +566,14 @@
 @media (max-width: 768px) {
   .coastal-card,
   .coastal-card.reverse {
-    flex-direction: column;
+    flex-direction: column-reverse; /* Image on Top, Content on Bottom */
     height: auto; /* Allow height to grow with content */
+  }
+  
+  .card-content {
+    padding: 2rem;
+    width: 100%;
+    flex: none; /* Reset flex sizing */
   }
   
   .card-image-wrapper {
@@ -577,12 +583,10 @@
     flex: none; /* Reset flex sizing */
   }
   
-  .card-content {
-    padding: 2rem;
-    width: 100%;
-    flex: none; /* Reset flex sizing */
+  .list-container {
+      gap: 5rem;
   }
-  
+
   .coastal-title {
     font-size: 2.5rem;
   }

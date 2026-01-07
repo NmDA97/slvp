@@ -176,6 +176,7 @@ const VolunteerCombined = () => {
               transition={{
                 duration: index === 0 ? 0 : 0.6,
                 delay: index === 0 ? 0 : index * 0.1,
+                delay: index === 0 ? 0 : index * 0.1,
               }}
             >
               {/* Content Column */}

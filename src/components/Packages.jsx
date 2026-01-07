@@ -87,6 +87,9 @@ const Packages = () => {
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 0.8, ease: "easeOut" }}
             >
+              {/* Mobile Title - Visible only on mobile */}
+              <h3 className="package-title mobile-pkg-title">{pkg.title}</h3>
+
               <div className="package-image-col">
                 <div className="package-img-wrapper">
                   <img src={pkg.image} alt={pkg.title} />
@@ -95,7 +98,9 @@ const Packages = () => {
               </div>
               <div className="package-info-col">
                 <div className="package-info-content">
-                  <h3 className="package-title">{pkg.title}</h3>
+                  <h3 className="package-title desktop-pkg-title">
+                    {pkg.title}
+                  </h3>
                   <span className="package-subtitle">{pkg.subtitle}</span>
                   <p className="package-desc">{pkg.description}</p>
 
