@@ -7,11 +7,11 @@ import Footer from "../components/Footer";
 import "../components/VolunteerWork.css";
 
 import heroImg from "../assets/volunteer/child.png"; // Using child.png for hero
-import imgGirlsHome from "../assets/volunteer/child.png";
-import imgSpecialNeeds from "../assets/volunteer/combined.png";
-import imgAesthetic from "../assets/volunteer/child.png"; // Reusing for now
-import imgCricket from "../assets/volunteer/wildlife.jpg"; // Placeholder
-import imgSports from "../assets/volunteer/wildlife.jpg"; // Placeholder
+import imgGirlsHome from "../assets/volunteer/girl's_home.png";
+import imgSpecialNeeds from "../assets/volunteer/special_needs.png";
+import imgAesthetic from "../assets/volunteer/music.png";
+import imgCricket from "../assets/volunteer/coaching_cricket.png";
+import imgSports from "../assets/volunteer/sports_coaching.png";
 
 const VolunteerWork = () => {
   const { scrollY } = useScroll();
