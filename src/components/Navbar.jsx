@@ -47,6 +47,38 @@ const Navbar = () => {
     },
   ];
 
+  // Volunteer Data Structure
+  const volunteerStructure = [
+    {
+      title: "Work with Children",
+      path: "/volunteer-work",
+      programs: [
+        { id: 1, title: "Girls' Home" },
+        { id: 2, title: "Special Needs Children" },
+        { id: 3, title: "Western Music & Arts" },
+        { id: 4, title: "Coaching Cricket" },
+        { id: 5, title: "Sports Coaching" },
+      ],
+    },
+    {
+      title: "Wildlife Conservation",
+      path: "/volunteer-wildlife",
+      programs: [
+        { id: 1, title: "Turtle Conservation" },
+        { id: 2, title: "Care for Elephants" },
+      ],
+    },
+    {
+      title: "Combined Projects",
+      path: "/volunteer-combined",
+      programs: [
+        { id: 1, title: "Children & Elephants" },
+        { id: 2, title: "Children & Turtles" },
+        { id: 3, title: "Elephants & Turtles" },
+      ],
+    },
+  ];
+
   // Handle navigation to section (from home or other pages)
   const handleNavClick = (sectionId, e) => {
     e.preventDefault();
@@ -81,6 +113,26 @@ const Navbar = () => {
           element.scrollIntoView({ behavior: "smooth", block: "center" });
         }
       }, 300); // Small delay to ensuring page loads
+    } else {
+      window.scrollTo({ top: 0, behavior: "instant" });
+    }
+  };
+
+  // Handle Volunteer Navigation
+  const handleVolunteerClick = (path, programId) => {
+    setIsOpen(false);
+    setActiveDropdown(null);
+    setActiveSubmenu(null);
+    navigate(path);
+
+    // If programId is present, scroll to it after navigation
+    if (programId) {
+      setTimeout(() => {
+        const element = document.getElementById(`program-${programId}`);
+        if (element) {
+          element.scrollIntoView({ behavior: "smooth", block: "center" });
+        }
+      }, 300);
     } else {
       window.scrollTo({ top: 0, behavior: "instant" });
     }
@@ -138,8 +190,8 @@ const Navbar = () => {
     { id: "about", label: "About" },
     { id: "offer", label: "What we offer" },
     { id: "why-us", label: "Why SLVP?" },
-    { id: "tours", label: "Tours", isDropdown: true }, // Mark as dropdown
-    { id: "volunteer", label: "Volunteer", path: "/volunteer-work" },
+    { id: "tours", label: "Tours", isDropdown: true },
+    { id: "volunteer", label: "Volunteer", isDropdown: true },
     { id: "contact", label: "Contact us" },
   ];
 
@@ -151,10 +203,10 @@ const Navbar = () => {
           ["home", "tours", "volunteer", "contact"].includes(item.id)
         );
 
-  const toggleDropdown = (e) => {
+  const toggleDropdown = (e, dropdownId) => {
     e.preventDefault();
     e.stopPropagation();
-    setActiveDropdown(activeDropdown === "tours" ? null : "tours");
+    setActiveDropdown(activeDropdown === dropdownId ? null : dropdownId);
   };
 
   const toggleSubmenu = (e, title) => {
@@ -181,67 +233,139 @@ const Navbar = () => {
 
           {navItems.map((item) => {
             if (item.isDropdown) {
-              return (
-                <div
-                  key={item.id}
-                  className={`nav-item-dropdown ${
-                    activeDropdown === "tours" ? "active" : ""
-                  }`}
-                >
-                  <a
-                    href="#tours"
-                    className={activeSection === item.id ? "active" : ""}
-                    onClick={(e) => {
-                      if (window.innerWidth <= 768) {
-                        toggleDropdown(e);
-                      } else {
-                        handleNavClick("tours", e);
-                      }
-                    }}
+              // Tour Dropdown
+              if (item.id === "tours") {
+                return (
+                  <div
+                    key={item.id}
+                    className={`nav-item-dropdown ${
+                      activeDropdown === "tours" ? "active" : ""
+                    }`}
                   >
-                    {item.label}{" "}
-                    <ChevronDown size={14} style={{ marginLeft: 4 }} />
-                  </a>
+                    <a
+                      href="#tours"
+                      className={activeSection === item.id ? "active" : ""}
+                      onClick={(e) => {
+                        if (window.innerWidth <= 768) {
+                          toggleDropdown(e, "tours");
+                        } else {
+                          handleNavClick("tours", e);
+                        }
+                      }}
+                    >
+                      {item.label}{" "}
+                      <ChevronDown size={14} style={{ marginLeft: 4 }} />
+                    </a>
 
-                  <div className="dropdown-menu">
-                    {tourStructure.map((pkg) => (
-                      <div
-                        key={pkg.title}
-                        className={`dropdown-item-wrapper ${
-                          activeSubmenu === pkg.title ? "active" : ""
-                        }`}
-                      >
+                    <div className="dropdown-menu">
+                      {tourStructure.map((pkg) => (
                         <div
-                          className="dropdown-item"
-                          onClick={(e) => {
-                            if (window.innerWidth <= 768) {
-                              toggleSubmenu(e, pkg.title);
-                            } else {
-                              handleTourClick(pkg.path);
-                            }
-                          }}
+                          key={pkg.title}
+                          className={`dropdown-item-wrapper ${
+                            activeSubmenu === pkg.title ? "active" : ""
+                          }`}
                         >
-                          <span>{pkg.title}</span>
-                          <ChevronRight size={16} className="chevron-right" />
-                        </div>
+                          <div
+                            className="dropdown-item"
+                            onClick={(e) => {
+                              if (window.innerWidth <= 768) {
+                                toggleSubmenu(e, pkg.title);
+                              } else {
+                                handleTourClick(pkg.path);
+                              }
+                            }}
+                          >
+                            <span>{pkg.title}</span>
+                            <ChevronRight size={16} className="chevron-right" />
+                          </div>
 
-                        {/* Nested Submenu */}
-                        <div className="dropdown-submenu">
-                          {pkg.tours.map((tour) => (
-                            <div
-                              key={tour.id}
-                              className="submenu-item"
-                              onClick={() => handleTourClick(pkg.path, tour.id)}
-                            >
-                              {tour.title}
-                            </div>
-                          ))}
+                          {/* Nested Submenu */}
+                          <div className="dropdown-submenu">
+                            {pkg.tours.map((tour) => (
+                              <div
+                                key={tour.id}
+                                className="submenu-item"
+                                onClick={() =>
+                                  handleTourClick(pkg.path, tour.id)
+                                }
+                              >
+                                {tour.title}
+                              </div>
+                            ))}
+                          </div>
                         </div>
-                      </div>
-                    ))}
+                      ))}
+                    </div>
                   </div>
-                </div>
-              );
+                );
+              }
+
+              // Volunteer Dropdown
+              if (item.id === "volunteer") {
+                return (
+                  <div
+                    key={item.id}
+                    className={`nav-item-dropdown ${
+                      activeDropdown === "volunteer" ? "active" : ""
+                    }`}
+                  >
+                    <a
+                      href="#volunteer"
+                      className={activeSection === item.id ? "active" : ""}
+                      onClick={(e) => {
+                        if (window.innerWidth <= 768) {
+                          toggleDropdown(e, "volunteer");
+                        } else {
+                          handleNavClick("volunteer", e);
+                        }
+                      }}
+                    >
+                      {item.label}{" "}
+                      <ChevronDown size={14} style={{ marginLeft: 4 }} />
+                    </a>
+
+                    <div className="dropdown-menu">
+                      {volunteerStructure.map((pkg) => (
+                        <div
+                          key={pkg.title}
+                          className={`dropdown-item-wrapper ${
+                            activeSubmenu === pkg.title ? "active" : ""
+                          }`}
+                        >
+                          <div
+                            className="dropdown-item"
+                            onClick={(e) => {
+                              if (window.innerWidth <= 768) {
+                                toggleSubmenu(e, pkg.title);
+                              } else {
+                                handleVolunteerClick(pkg.path);
+                              }
+                            }}
+                          >
+                            <span>{pkg.title}</span>
+                            <ChevronRight size={16} className="chevron-right" />
+                          </div>
+
+                          {/* Nested Submenu */}
+                          <div className="dropdown-submenu">
+                            {pkg.programs.map((program) => (
+                              <div
+                                key={program.id}
+                                className="submenu-item"
+                                onClick={() =>
+                                  handleVolunteerClick(pkg.path, program.id)
+                                }
+                              >
+                                {program.title}
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                );
+              }
             }
 
             return (
