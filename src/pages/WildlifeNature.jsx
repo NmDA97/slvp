@@ -79,34 +79,69 @@ const WildlifeNature = () => {
     <div className="coastal-page">
       <Navbar />
 
-      {/* Hero Section */}
+      {/* Modern Premium Hero Section */}
       <section className="coastal-hero">
-        <motion.img
-          src={heroImg}
-          alt="Wildlife Hero"
-          className="coastal-hero-bg"
-          style={{ y }}
-        />
-        <div className="coastal-hero-overlay"></div>
+        {/* Floating Geometric Shapes */}
+        <div className="hero-shape hero-shape-1"></div>
+        <div className="hero-shape hero-shape-2"></div>
+        <div className="hero-shape hero-shape-3"></div>
 
+        {/* Left Content Area */}
         <div className="coastal-hero-content">
+          <motion.div
+            className="coastal-subtitle"
+            initial={{ opacity: 0, x: -30 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+          >
+            Untamed Beauty
+          </motion.div>
+
           <motion.h1
             className="coastal-title"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
+            transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
           >
             Wildlife & Nature Paradise Tours
           </motion.h1>
+
+          <motion.p
+            className="coastal-description"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
+          >
+            Immerse yourself in Sri Lanka's rich biodiversity. Encounter
+            majestic elephants, elusive leopards, and vibrant birdlife in
+            pristine natural habitats.
+          </motion.p>
         </div>
 
+        {/* Right Image Area */}
+        <motion.div
+          className="coastal-hero-image-wrapper"
+          initial={{ opacity: 0, x: 50 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 1, delay: 0.3, ease: "easeOut" }}
+        >
+          <motion.img
+            src={heroImg}
+            alt="Wildlife Hero"
+            className="coastal-hero-bg"
+            style={{ y }}
+          />
+        </motion.div>
+
+        {/* Scroll Indicator */}
         <motion.div
           className="scroll-indicator"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 1, duration: 1 }}
+          transition={{ delay: 1.2, duration: 1 }}
         >
-          <ChevronDown size={32} />
+          Scroll
+          <ChevronDown size={24} />
         </motion.div>
       </section>
 

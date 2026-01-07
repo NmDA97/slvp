@@ -4,7 +4,7 @@ import { ArrowRight, ChevronDown } from "lucide-react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
-import "../components/VolunteerWork.css"; // Reusing the same CSS
+import "../components/CoastalGetaways.css"; // Using modern styling
 
 import heroImg from "../assets/volunteer/wildlife.jpg";
 import imgTurtle from "../assets/volunteer/Turtle.jpg";
@@ -46,47 +46,71 @@ const VolunteerWildlife = () => {
   ];
 
   return (
-    <div className="volunteer-page">
+    <div className="coastal-page">
       <Navbar />
 
-      {/* Hero Section */}
-      <section className="volunteer-hero">
-        <motion.img
-          src={heroImg}
-          alt="Wildlife Conservation Hero"
-          className="volunteer-hero-bg"
-          style={{ y }}
-          initial={{ y: 0 }}
-          loading="eager"
-        />
-        <div className="volunteer-hero-overlay"></div>
+      {/* Modern Premium Hero Section */}
+      <section className="coastal-hero">
+        {/* Floating Geometric Shapes */}
+        <div className="hero-shape hero-shape-1"></div>
+        <div className="hero-shape hero-shape-2"></div>
+        <div className="hero-shape hero-shape-3"></div>
 
-        <div className="volunteer-hero-content">
-          <motion.h1
-            className="volunteer-title"
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
+        {/* Left Content Area */}
+        <div className="coastal-hero-content">
+          <motion.div
+            className="coastal-subtitle"
+            initial={{ opacity: 0, x: -30 }}
+            animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
           >
-            VOLUNTEER & TAKE PART IN WILDLIFE CONSERVATION
-          </motion.h1>
-          <motion.p
-            className="volunteer-subtitle"
-            initial={{ opacity: 0, y: 20 }}
+            Wildlife Conservation
+          </motion.div>
+
+          <motion.h1
+            className="coastal-title"
+            initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
           >
-            Experience Sri Lanka Your Way
+            Volunteer & Wildlife Conservation
+          </motion.h1>
+
+          <motion.p
+            className="coastal-description"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
+          >
+            Contribute to protecting Sri Lanka's incredible wildlife through
+            turtle conservation and elephant care programs.
           </motion.p>
         </div>
 
+        {/* Right Image Area */}
+        <motion.div
+          className="coastal-hero-image-wrapper"
+          initial={{ opacity: 0, x: 50 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 1, delay: 0.3, ease: "easeOut" }}
+        >
+          <motion.img
+            src={heroImg}
+            alt="Wildlife Conservation Hero"
+            className="coastal-hero-bg"
+            style={{ y }}
+          />
+        </motion.div>
+
+        {/* Scroll Indicator */}
         <motion.div
           className="scroll-indicator"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 1, duration: 1 }}
+          transition={{ delay: 1.2, duration: 1 }}
         >
-          <ChevronDown size={32} />
+          Scroll
+          <ChevronDown size={24} />
         </motion.div>
       </section>
 
@@ -94,10 +118,10 @@ const VolunteerWildlife = () => {
           The user removed it from the other page. The image shows it, but user *just* asked to remove it.
           I will omit the logo motion div to be safe and consistent with the "remove logo" request for the other page.
       */}
-      <section className="volunteer-intro">
+      <section className="coastal-intro">
         <div className="intro-container">
           <motion.div
-            className="volunteer-breadcrumb"
+            className="coastal-breadcrumb"
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -134,13 +158,13 @@ const VolunteerWildlife = () => {
       </section>
 
       {/* Program List Section */}
-      <section className="volunteer-list">
+      <section className="coastal-list">
         <div className="list-container">
           {programs.map((program, index) => (
             <motion.div
               key={program.id}
               id={`program-${program.id}`}
-              className={`volunteer-card ${index % 2 === 1 ? "reverse" : ""}`}
+              className={`coastal-card ${index % 2 === 1 ? "reverse" : ""}`}
               initial={
                 index === 0 ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }
               }
