@@ -87,21 +87,24 @@ const Volunteer = () => {
               transition={{ duration: 0.8, ease: "easeOut" }}
             >
               {/* Mobile Title - Visible only on mobile */}
-              <h3 className="package-title mobile-pkg-title">
-                {program.title}
-              </h3>
+              <Link to={program.link} className="title-link-wrapper">
+                <h3 className="package-title mobile-pkg-title">
+                  {program.title}
+                </h3>
+              </Link>
 
               <div className="package-image-col">
                 <div className="package-img-wrapper">
                   <img src={program.image} alt={program.title} />
-                  <div className="img-overlay"></div>
                 </div>
               </div>
               <div className="package-info-col">
                 <div className="package-info-content">
-                  <h3 className="package-title desktop-pkg-title">
-                    {program.title}
-                  </h3>
+                  <Link to={program.link} className="title-link-wrapper">
+                    <h3 className="package-title desktop-pkg-title">
+                      {program.title}
+                    </h3>
+                  </Link>
                   <span className="package-subtitle">{program.subtitle}</span>
                   <p className="package-desc">{program.description}</p>
 

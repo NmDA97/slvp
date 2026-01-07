@@ -615,60 +615,77 @@ img {
   line-height: 1.6;
 }
 
-/* Premium Staggered Layout */
-/* Immersive Bento Grid */
+/* Premium Interactive Accordion Layout */
 .bento-grid {
-  display: grid;
-  gap: 1.5rem;
+  display: flex;
+  gap: 2rem; 
+  height: 450px; 
+  width: 95%; /* Add breathing room on sides */
+  margin: 0 auto; /* Center it */
 }
 
+/* On Desktop only - Mobile stays stacked via media query below if needed, 
+   but currently mobile styles are separate. We need to ensure desktop only. */
 @media (min-width: 900px) {
   .bento-grid {
-    grid-template-columns: 1.2fr 1fr;
-    height: 600px;
+    flex-direction: row;
   }
 }
 
-.bento-col-side {
-  display: grid;
-  grid-template-rows: 1fr 1fr;
-  gap: 1.5rem;
-  height: 100%;
-}
-
+/* Flattened cards for accordion */
 .bento-card {
   position: relative;
   overflow: hidden;
-  border-radius: 20px;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.15);
-  transition: all 0.4s ease;
-  min-height: 240px; /* Reduced specific height for mobile */
+  border-radius: 32px; /* Uniform Premium Rounding */
+  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+  background-color: #000; /* Ensure fade is to BLACK, not white */
+  
+  /* Accordion Logic */
+  flex: 1; /* Default: Equal width */
+  min-width: 0; /* Allow shrinking */
+  transition: flex 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              transform 0.4s ease,
+              box-shadow 0.4s ease;
+  
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  cursor: pointer;
+}
+
+/* Expansion on Hover */
+.bento-grid:hover .bento-card {
+  opacity: 0.7; /* Dim others slightly */
+}
+
+.bento-grid .bento-card:hover {
+  flex: 3.5; /* Expand active card significantly */
+  opacity: 1;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.2);
 }
 
 @media (min-width: 900px) {
   .bento-card-main {
     height: 100%;
-    border-top-left-radius: 60px;
-    border-bottom-right-radius: 60px;
+    /* Removed custom diagonal radii for uniform look */
   }
 
-  .bento-col-side > .bento-card:first-child {
-    border-top-right-radius: 60px;
-  }
-
-  .bento-col-side > .bento-card:last-child {
-    border-bottom-left-radius: 60px;
-  }
+  /* Specific overrides removed to keep uniform 32px shape */
 
   .bento-card {
     min-height: auto;
   }
   
   .bento-content {
-      padding: 2.5rem; /* Restore larger padding on desktop */
+      padding: 2.5rem;
+  }
+    
+  .bento-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 30px 60px rgba(0,0,0,0.25); /* Deep Float Effect */
+      border-color: rgba(255, 255, 255, 0.6); /* Brighter edge on hover */
   }
 }
 
+/* Cinematic Editorial Styles */
 .bento-bg {
   position: absolute;
   top: 0;
@@ -676,13 +693,16 @@ img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.8s ease;
+  transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   z-index: 0;
+  /* Natural Colors - No fake vibrancy */
 }
 
 .bento-card:hover .bento-bg {
   transform: scale(1.1);
 }
+
+/* Inner Frame Removed */
 
 .bento-overlay {
   position: absolute;
@@ -690,99 +710,209 @@ img {
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.4) 40%, transparent 100%);
+  /* Cinematic Black Scrim - Pure Premium */
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.9) 0%,       /* Deep Black Base */
+    rgba(0, 0, 0, 0.7) 20%,      /* Smooth Easing */
+    rgba(0, 0, 0, 0.4) 40%,
+    rgba(0, 0, 0, 0.1) 60%,
+    transparent 80%
+  );
   z-index: 1;
-  transition: background 0.4s ease;
+  opacity: 1; /* Always distinct */
+  transform: translateY(0); 
+  transition: all 0.5s ease;
+  mix-blend-mode: normal; 
 }
 
 .bento-card:hover .bento-overlay {
-  background: linear-gradient(to top, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.5) 50%, transparent 100%);
+  opacity: 1; /* Full contrast on active state */
+  transform: translateY(0);
 }
 
 .bento-content {
-  position: relative;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
   z-index: 2;
-  height: 100%;
+  padding: 2.5rem;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  padding: 1.5rem; /* Reduced padding for mobile */
-  color: var(--white);
   transform: translateY(0);
-  transition: transform 0.4s ease;
 }
 
-@media (min-width: 900px) {
-  .bento-content {
-      padding: 2.5rem; /* Restore larger padding on desktop */
+/* Typography & Animation */
+.bento-content h3 {
+  font-size: 2rem;
+  font-weight: 800;
+  margin-bottom: 0.5rem;
+  color: var(--white);
+  text-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  transform: translateY(20px); /* Initial position */
+  transition: transform 0.5s ease;
+}
+
+/* Content Visibility in Accordion */
+.bento-content {
+  /* ... existing basic styles will stick ... */
+  /* Allow text to wrap naturally for paragraph look */
+  white-space: normal; 
+  opacity: 1; 
+  /* Prevent width jitter during flex transition by locking width or using overflow hidden on parent */
+  overflow: hidden; 
+}
+
+.bento-content h3 {
+  opacity: 0.9;
+  transform: translateY(0);
+  transition: all 0.5s ease;
+  font-size: 1.5rem; 
+  color: var(--white); /* Ensure White */
+  text-shadow: 0 2px 4px rgba(0,0,0,0.5); /* Strong shadow for readability */
+  margin-bottom: 0.5rem;
+}
+
+/* When expanded, show full glory */
+.bento-grid .bento-card:hover .bento-content h3 {
+  font-size: 2rem; 
+  opacity: 1;
+}
+
+.bento-content p,
+.bento-link {
+    /* Restore White Text */
+    color: var(--white);
+    text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+
+    /* Smooth Transition Logic */
+    /* Remove display: none to allow animation */
+    
+    opacity: 0;
+    transform: translateY(20px);
+    
+    /* Use max-height for "slide open" effect */
+    max-height: 0;
+    margin-bottom: 0; /* Remove margin to collapse fully */
+    overflow: hidden;
+    
+    transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* Only show details on the HOVERED card */
+.bento-grid .bento-card:hover .bento-content p {
+    opacity: 1;
+    transform: translateY(0);
+    max-height: 150px; /* Reveal sufficiently */
+    margin-bottom: 1.5rem; /* Restore spacing */
+    transition-delay: 0.1s;
+}
+
+.bento-grid .bento-card:hover .bento-link {
+    opacity: 1;
+    transform: translateY(0);
+    max-height: 50px;
+    transition-delay: 0.2s;
+}
+
+@media (max-width: 900px) {
+  /* Mobile Reset - Compact Snap Carousel */
+  .bento-grid {
+    display: flex;
+    flex-direction: row; 
+    overflow-x: auto; 
+    scroll-snap-type: x mandatory; 
+    gap: 1rem;
+    padding-bottom: 2rem; 
+    width: 100%; 
+    margin: 0;
+    
+    /* Center active item with side peaking */
+    padding-left: 1.5rem; 
+    padding-right: 1.5rem;
+    
+    /* Hide scrollbar */
+    scrollbar-width: none; 
+    -ms-overflow-style: none; 
+  }
+  
+  .bento-grid::-webkit-scrollbar {
+    display: none; 
+  }
+  
+  .bento-card {
+      min-width: 75vw; /* 75% width = Obvious peek at next card */
+      height: 320px;   /* Much more compact height */
+      flex: none; 
+      scroll-snap-align: center; 
+      border-right: 1px solid rgba(255,255,255,0.1); 
+  }
+
+  /* Mobile Visibility Enhancements - Reset for Tap Interaction */
+  .bento-bg {
+    opacity: 1; /* Clear by default */
+    filter: none;
+    transition: all 0.5s ease;
+  }
+
+  /* When Active (Tapped) */
+  .bento-card.is-mobile-active .bento-bg {
+    opacity: 0.4; /* Dim significantly */
+    filter: blur(4px); /* Heavy blur to pop text */
+  }
+
+  /* Default Hidden, Reveal on Active */
+  .bento-content p, .bento-link {
+      opacity: 0;
+      max-height: 0;
+      /* Reset desktop hover logic */
+  }
+
+  .bento-card.is-mobile-active .bento-content p,
+  .bento-card.is-mobile-active .bento-link {
+      opacity: 1;
+      transform: translateY(0);
+      max-height: 300px; /* Force expanded */
+      margin-bottom: 1.5rem;
+      display: block;
+      transition: all 0.5s ease;
   }
 }
 
-.bento-card:hover .bento-content {
-  transform: translateY(-5px);
-  background: none; /* Ensure no background on hover */
+@media (min-width: 900px) {
+    /* Refined height handling for desktop */
+    .bento-content p {
+        height: auto; /* Keep layout stable on desktop, just fade */
+        display: block;
+        margin-bottom: 0; /* Remove margin when hidden to simulate collapse */
+    }
+    
+    .bento-card:hover .bento-content p {
+       margin-bottom: 1.5rem;
+    }
 }
 
-/* Typography Adjustments */
-.bento-content h3 {
-  font-size: 2rem;
-  font-weight: 800;
-  margin-bottom: 0.75rem;
-  color: var(--white);
-  text-shadow: 0 2px 4px rgba(0,0,0,0.3);
-}
-
-.bento-content p {
-  color: rgba(255, 255, 255, 0.9);
-  font-size: 1.05rem;
-  line-height: 1.6;
-  margin-bottom: 1.5rem;
-}
-
-.bento-card:hover .bento-content {
-  transform: translateY(-5px);
-}
-
-.bento-content h3 {
-  font-size: 2rem;
-  font-weight: 800;
-  margin-bottom: 0.75rem;
-  color: var(--white); /* Override default primary color */
-  text-shadow: 0 2px 4px rgba(0,0,0,0.3);
-}
-
-.bento-content p {
-  color: rgba(255, 255, 255, 0.9);
-  font-size: 1.05rem;
-  line-height: 1.6;
-  margin-bottom: 1.5rem;
-  max-width: 90%;
-}
-
-.bento-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  font-weight: 700;
-  color: var(--primary-color); /* Restored Dark Green */
-  text-transform: uppercase;
-  font-size: 0.9rem;
-  letter-spacing: 1px;
-  transition: all 0.3s ease;
-  width: fit-content;
-}
-
-.bento-link:hover {
-  color: var(--accent-color);
-  gap: 0.75rem;
-}
-
-.bento-link-white {
-    color: var(--white);
-}
-
-.bento-link-white:hover {
-    color: var(--accent-color);
+@media (max-width: 768px) {
+    /* Mobile - Always visible or simplified */
+    .bento-overlay {
+        opacity: 0.9;
+        transform: translateY(0);
+    }
+    
+    .bento-content h3, 
+    .bento-content p,
+    .bento-link {
+        opacity: 1 !important;
+        transform: none !important;
+        height: auto !important;
+        margin-bottom: 1rem;
+    }
+    
+    .bento-content {
+        padding: 1.5rem;
+    }
 }
 
 .mt-5 {
@@ -830,14 +960,13 @@ img {
     border-radius: 20px;
     overflow: hidden;
     position: relative;
-    position: relative;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1); /* Base shadow */
-    transition: all 0.5s ease; /* Smooth Float Transition */
+    box-shadow: 0 15px 35px rgba(0,0,0,0.08); /* Softer base shadow */
+    transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1); /* Premium ease */
 }
 
 .package-row:hover .package-img-wrapper {
-    transform: translateY(-10px); /* Lift up */
-    box-shadow: 0 20px 40px rgba(0,0,0,0.2); /* Deeper shadow */
+    transform: translateY(-8px) scale(1.02); /* Subtle lift and scale */
+    box-shadow: 0 25px 50px rgba(0,0,0,0.12); /* Deep elegant shadow */
 }
 
 .package-img-wrapper img {
@@ -848,7 +977,7 @@ img {
 }
 
 .package-row:hover .package-img-wrapper img {
-    transform: scale(1.05);
+    transform: scale(1.08); /* Slow inner zoom */
 }
 
 .package-info-col {
@@ -862,6 +991,23 @@ img {
     color: var(--primary-color);
     margin-bottom: 1rem;
     line-height: 1.1;
+}
+
+.title-link-wrapper {
+    display: block;
+    text-decoration: none;
+    width: fit-content;
+}
+
+.title-link-wrapper:hover .package-title {
+    color: var(--accent-color);
+    transition: color 0.3s ease;
+}
+
+@media (max-width: 900px) {
+    .title-link-wrapper {
+        width: 100%;
+    }
 }
 
 .mobile-pkg-title {

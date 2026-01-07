@@ -111,8 +111,8 @@ const CoastalGetaways = () => {
         {/* Right Image Area */}
         <motion.div
           className="coastal-hero-image-wrapper"
-          initial={{ opacity: 0, x: 50 }}
-          animate={{ opacity: 1, x: 0 }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
           transition={{ duration: 1, delay: 0.3, ease: "easeOut" }}
         >
           <motion.img
@@ -130,7 +130,6 @@ const CoastalGetaways = () => {
           animate={{ opacity: 1 }}
           transition={{ delay: 1.2, duration: 1 }}
         >
-          Scroll
           <ChevronDown size={24} />
         </motion.div>
       </section>
@@ -227,7 +226,6 @@ const CoastalGetaways = () => {
               viewport={{ once: true, amount: 0.1 }}
               transition={{
                 duration: index === 0 ? 0 : 0.6,
-                delay: index === 0 ? 0 : index * 0.1,
                 delay: index === 0 ? 0 : index * 0.1,
               }}
             >

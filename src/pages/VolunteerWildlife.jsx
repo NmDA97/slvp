@@ -90,8 +90,8 @@ const VolunteerWildlife = () => {
         {/* Right Image Area */}
         <motion.div
           className="coastal-hero-image-wrapper"
-          initial={{ opacity: 0, x: 50 }}
-          animate={{ opacity: 1, x: 0 }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
           transition={{ duration: 1, delay: 0.3, ease: "easeOut" }}
         >
           <motion.img
@@ -109,7 +109,6 @@ const VolunteerWildlife = () => {
           animate={{ opacity: 1 }}
           transition={{ delay: 1.2, duration: 1 }}
         >
-          Scroll
           <ChevronDown size={24} />
         </motion.div>
       </section>

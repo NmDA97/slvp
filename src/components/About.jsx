@@ -1,4 +1,7 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+// Swiper Imports
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
 import { ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
 import slide1 from "../assets/hero-slides/slide1.jpg";
@@ -30,6 +33,51 @@ const fadeInUp = {
 
 const About = () => {
   const [isExpanded, setIsExpanded] = useState(false);
+
+  // State for mobile "tap to reveal" interaction
+  const [activeMobileCard, setActiveMobileCard] = useState(null);
+  const [isMobile, setIsMobile] = useState(false);
+
+  // Detect Mobile Viewport
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 900);
+    checkMobile(); // Check on mount
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
+
+  const handleMobileCardClick = (index) => {
+    // Toggle: if clicking active, close it; otherwise open new
+    setActiveMobileCard(activeMobileCard === index ? null : index);
+  };
+
+  // Card Data
+  const cards = [
+    {
+      id: "tours",
+      title: "Guided Tours",
+      desc: "Join our guided tours to explore the island's diverse landscapes, ancient sites, and cultural heritage. Immerse yourself in Sri Lankan culture.",
+      img: tourGuideImg,
+      link: "#tours",
+    },
+    {
+      id: "volunteer",
+      title: "Volunteer Programs",
+      desc: "Give back to local communities and make a difference by volunteering with SLVP.",
+      img: volunteerImg,
+      link: "#volunteer",
+    },
+    {
+      id: "combo",
+      title: "Combo Programs",
+      desc: "Combine travel & volunteering. Create unforgettable memories while making a positive impact.",
+      img: comboImg,
+      link: "#combo",
+    },
+  ];
+
+  // Infinite Scroll Logic: On mobile, repeat cards 3 times
+  const displayCards = isMobile ? [...cards, ...cards, ...cards] : cards;
 
   return (
     <>
@@ -163,102 +211,85 @@ const About = () => {
               and culture."
             </p>
           </div>
-          <div className="bento-grid">
-            {/* Main Tall Card - Guided Tours */}
-            <motion.div
-              className="bento-card bento-card-main"
-              initial="visible"
-              whileInView="visible"
-              viewport={{ once: true, amount: 0.1 }}
-              variants={fadeInUp}
-              whileHover={{ scale: 1.02 }}
+          {/* Conditional Layout: Swiper for Mobile, Grid for Desktop */}
+          {isMobile ? (
+            <Swiper
+              spaceBetween={20}
+              slidesPerView={"auto"}
+              centeredSlides={true}
+              loop={true}
+              grabCursor={true}
+              className="bento-swiper"
+              style={{ paddingBottom: "3rem" }} // Space for shadow
             >
-              <img src={tourGuideImg} alt="Guided Tours" className="bento-bg" />
-              <div className="bento-overlay"></div>
-              <div className="bento-content">
-                <h3>Guided Tours</h3>
-                <p>
-                  Join our guided tours to explore the island's diverse
-                  landscapes, ancient sites, and cultural heritage. Immerse
-                  yourself in Sri Lankan culture.
-                </p>
-                <a href="#tours" className="bento-link bento-link-white">
-                  Learn More <ArrowRight size={16} />
-                </a>
-              </div>
-            </motion.div>
+              {/* Note: Doubling cards to 6 ensures Swiper loop works perfectly with 'auto' width */}
+              {[...cards, ...cards].map((card, index) => (
+                <SwiperSlide
+                  key={`${card.id}-${index}`}
+                  style={{ width: "75vw" }}
+                >
+                  <motion.div
+                    className={`bento-card ${
+                      activeMobileCard === index % 3 ? "is-mobile-active" : ""
+                    }`}
+                    onClick={() => handleMobileCardClick(index % 3)}
+                    initial="visible"
+                    whileInView="visible"
+                    viewport={{ once: true, amount: 0.1 }}
+                    variants={fadeInUp}
+                  >
+                    <img src={card.img} alt={card.title} className="bento-bg" />
+                    <div className="bento-overlay"></div>
 
-            <div className="bento-col-side">
-              {/* Side Card - Volunteer */}
-              <motion.div
-                href="#volunteer"
-                className="bento-card"
-                initial="visible"
-                whileInView="visible"
-                viewport={{ once: true, amount: 0.1 }}
-                variants={{
-                  ...fadeInUp,
-                  visible: {
-                    ...fadeInUp.visible,
-                    transition: {
-                      ...fadeInUp.visible.transition,
-                      delay: 0.2,
+                    <div className="bento-content">
+                      <h3>{card.title}</h3>
+                      <p>{card.desc}</p>
+                      <a
+                        href={card.link}
+                        className="bento-link bento-link-white"
+                      >
+                        Learn More <ArrowRight size={16} />
+                      </a>
+                    </div>
+                  </motion.div>
+                </SwiperSlide>
+              ))}
+            </Swiper>
+          ) : (
+            <div className="bento-grid">
+              {cards.map((card, index) => (
+                <motion.div
+                  key={card.id}
+                  className="bento-card"
+                  initial="visible"
+                  whileInView="visible"
+                  viewport={{ once: true, amount: 0.1 }}
+                  variants={{
+                    ...fadeInUp,
+                    visible: {
+                      ...fadeInUp.visible,
+                      transition: {
+                        ...fadeInUp.visible.transition,
+                        delay: index * 0.2,
+                      },
                     },
-                  },
-                }}
-                whileHover={{ scale: 1.02 }}
-              >
-                <img
-                  src={volunteerImg}
-                  alt="Volunteer Programs"
-                  className="bento-bg"
-                />
-                <div className="bento-overlay"></div>
-                <div className="bento-content">
-                  <h3>Volunteer Programs</h3>
-                  <p>
-                    Give back to local communities and make a difference by
-                    volunteering with SLVP.
-                  </p>
-                  <a href="#volunteer" className="bento-link bento-link-white">
-                    Learn More <ArrowRight size={16} />
-                  </a>
-                </div>
-              </motion.div>
+                  }}
+                  whileHover={{ scale: 1.02 }}
+                >
+                  <img src={card.img} alt={card.title} className="bento-bg" />
+                  <div className="bento-overlay"></div>
 
-              {/* Side Card - Combo */}
-              <motion.div
-                className="bento-card"
-                initial="visible"
-                whileInView="visible"
-                viewport={{ once: true, amount: 0.1 }}
-                variants={{
-                  ...fadeInUp,
-                  visible: {
-                    ...fadeInUp.visible,
-                    transition: {
-                      ...fadeInUp.visible.transition,
-                      delay: 0.4,
-                    },
-                  },
-                }}
-                whileHover={{ scale: 1.02 }}
-              >
-                <img src={comboImg} alt="Combo Programs" className="bento-bg" />
-                <div className="bento-overlay"></div>
-                <div className="bento-content">
-                  <h3>Combo Programs</h3>
-                  <p>
-                    Combine travel & volunteering. Create unforgettable memories
-                    while making a positive impact.
-                  </p>
-                  <a href="#combo" className="bento-link bento-link-white">
-                    Learn More <ArrowRight size={16} />
-                  </a>
-                </div>
-              </motion.div>
+                  <div className="bento-content">
+                    <h3>{card.title}</h3>
+                    <p>{card.desc}</p>
+                    <a href={card.link} className="bento-link bento-link-white">
+                      Learn More <ArrowRight size={16} />
+                    </a>
+                  </div>
+                </motion.div>
+              ))}
             </div>
-          </div>
+          )}
         </div>
       </section>
     </>

@@ -23,7 +23,7 @@ const VolunteerCombined = () => {
     {
       id: 1,
       title: "Work With Children and Care for Elephants",
-      location: "Kegalle & Balapitiya, Sri Lanka",
+      location: "Kegalle & Balapitiya",
       description:
         "This unique program combines two impactful initiatives, allowing you to contribute meaningfully to both causes. Work closely with children in various settings, offering educational activities, recreational programs, mentorship, and emotional support. Witness firsthand the profound difference you can make in their lives.",
       included: "Care for Domesticated Elephants + Work with Children",
@@ -32,7 +32,7 @@ const VolunteerCombined = () => {
     {
       id: 2,
       title: "Work With Children and Turtle Conservation",
-      location: "Galle, Sri Lanka",
+      location: "Galle",
       description:
         "Welcome to the Working with Children Volunteer Program and the Turtle Conservation Volunteer Program, both extraordinary opportunities provided by the SLVP team! These programs offer compassionate individuals the chance to make a positive impact on the lives of children and sea turtles in Sri Lanka. By participating in these programs, volunteers will engage in meaningful activities, immerse themselves in the local culture, and contribute to the preservation of these magnificent creatures.",
       included: "Turtle Conservation Project + Work with Children",
@@ -41,7 +41,7 @@ const VolunteerCombined = () => {
     {
       id: 3,
       title: "Elephants and Turtle Conservation Project",
-      location: "Galle & Kegalle, Sri Lanka",
+      location: "Galle & Kegalle",
       description:
         "This hands-on program allows volunteers to engage in caring for elephants by learning about their behavior, feeding, bathing, and supporting their welfare. Additionally, volunteers actively participate in turtle conservation efforts by protecting nesting sites, releasing hatchlings, and raising awareness. Alongside conservation work, volunteers will immerse themselves in Sri Lankan cultural heritage, exploring local communities and indulging in traditional cuisine. This transformative program combines conservation, cultural immersion, and personal growth, allowing volunteers to leave a positive impact on the world while experiencing the beauty of Sri Lanka.",
       included: "Turtle Conservation Project + Care for Domesticated Elephants",
@@ -94,8 +94,8 @@ const VolunteerCombined = () => {
         {/* Right Image Area */}
         <motion.div
           className="coastal-hero-image-wrapper"
-          initial={{ opacity: 0, x: 50 }}
-          animate={{ opacity: 1, x: 0 }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
           transition={{ duration: 1, delay: 0.3, ease: "easeOut" }}
         >
           <motion.img
@@ -107,15 +107,14 @@ const VolunteerCombined = () => {
         </motion.div>
 
         {/* Scroll Indicator */}
-        <motion.div
+        {/* <motion.div
           className="scroll-indicator"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1.2, duration: 1 }}
         >
-          Scroll
           <ChevronDown size={24} />
-        </motion.div>
+        </motion.div> */}
       </section>
 
       {/* Intro Section */}
@@ -175,7 +174,6 @@ const VolunteerCombined = () => {
               viewport={{ once: true, amount: 0.1 }}
               transition={{
                 duration: index === 0 ? 0 : 0.6,
-                delay: index === 0 ? 0 : index * 0.1,
                 delay: index === 0 ? 0 : index * 0.1,
               }}
             >
