@@ -9,46 +9,67 @@ import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 
 import { Routes, Route } from "react-router-dom";
-import CoastalGetaways from "./pages/CoastalGetaways";
-import WildlifeNature from "./pages/WildlifeNature";
-import CeylonChronicles from "./pages/CeylonChronicles";
-import VolunteerWork from "./pages/VolunteerWork";
-import VolunteerWildlife from "./pages/VolunteerWildlife";
-import VolunteerCombined from "./pages/VolunteerCombined"; // Import new page
+import { Suspense, lazy } from "react";
+
+// Lazy Load Pages to reduce initial bundle size
+const CoastalGetaways = lazy(() => import("./pages/CoastalGetaways"));
+const WildlifeNature = lazy(() => import("./pages/WildlifeNature"));
+const CeylonChronicles = lazy(() => import("./pages/CeylonChronicles"));
+const VolunteerWork = lazy(() => import("./pages/VolunteerWork"));
+const VolunteerWildlife = lazy(() => import("./pages/VolunteerWildlife"));
+const VolunteerCombined = lazy(() => import("./pages/VolunteerCombined"));
+
+// Loading Component
+const Loading = () => (
+  <div
+    style={{
+      height: "100vh",
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+      backgroundColor: "#000",
+      color: "#fff",
+    }}
+  >
+    Loading...
+  </div>
+);
 
 function App() {
   return (
     <div className="app">
-      <Routes>
-        <Route
-          path="/"
-          element={
-            <>
-              <Navbar />
-              <Hero />
-              <main>
-                <About />
-                <WhyUs />
-                <FounderMessage />
-                <Packages />
-                <Volunteer />
-                <Contact />
-              </main>
-              <Footer />
-            </>
-          }
-        />
-        <Route path="/coastal-getaways" element={<CoastalGetaways />} />
-        <Route path="/wildlife-nature" element={<WildlifeNature />} />
-        <Route path="/ceylon-chronicles" element={<CeylonChronicles />} />
-        <Route path="/volunteer-work" element={<VolunteerWork />} />
-        <Route path="/volunteer-wildlife" element={<VolunteerWildlife />} />
-        <Route
-          path="/volunteer-combined"
-          element={<VolunteerCombined />}
-        />{" "}
-        {/* New route */}
-      </Routes>
+      <Suspense fallback={<Loading />}>
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <>
+                <Navbar />
+                <Hero />
+                <main>
+                  <About />
+                  <WhyUs />
+                  <FounderMessage />
+                  <Packages />
+                  <Volunteer />
+                  <Contact />
+                </main>
+                <Footer />
+              </>
+            }
+          />
+          <Route path="/coastal-getaways" element={<CoastalGetaways />} />
+          <Route path="/wildlife-nature" element={<WildlifeNature />} />
+          <Route path="/ceylon-chronicles" element={<CeylonChronicles />} />
+          <Route path="/volunteer-work" element={<VolunteerWork />} />
+          <Route path="/volunteer-wildlife" element={<VolunteerWildlife />} />
+          <Route
+            path="/volunteer-combined"
+            element={<VolunteerCombined />}
+          />{" "}
+          {/* New route */}
+        </Routes>
+      </Suspense>
     </div>
   );
 }

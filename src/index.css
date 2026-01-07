@@ -1612,3 +1612,19 @@ html {
 #contact {
     scroll-margin-top: 100px;
 }
+
+
+/* Fix for Packages Section Link Color Override */
+.package-custom-link {
+    color: var(--primary-color) !important;
+    text-shadow: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+    display: inline-flex !important;
+    margin-top: 1rem;
+}
+
+.package-custom-link:hover {
+    color: var(--accent-color) !important;
+    gap: 0.5rem;
+}

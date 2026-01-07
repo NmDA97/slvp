@@ -107,14 +107,14 @@ const VolunteerCombined = () => {
         </motion.div>
 
         {/* Scroll Indicator */}
-        {/* <motion.div
+        <motion.div
           className="scroll-indicator"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1.2, duration: 1 }}
         >
           <ChevronDown size={24} />
-        </motion.div> */}
+        </motion.div>
       </section>
 
       {/* Intro Section */}

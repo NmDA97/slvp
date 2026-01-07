@@ -118,11 +118,11 @@ const Packages = () => {
                   </div>
 
                   {pkg.link.startsWith("/") ? (
-                    <Link to={pkg.link} className="bento-link">
+                    <Link to={pkg.link} className="btn-explore">
                       View Details <ArrowRight size={16} />
                     </Link>
                   ) : (
-                    <a href={pkg.link} className="bento-link">
+                    <a href={pkg.link} className="btn-explore">
                       View Details <ArrowRight size={16} />
                     </a>
                   )}
